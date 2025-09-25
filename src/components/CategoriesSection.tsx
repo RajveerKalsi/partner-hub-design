@@ -113,66 +113,81 @@ const CategoriesSection = () => {
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setSelectedCategory(null)}
             />
-            <div className="relative bg-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-8">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-3xl font-bold text-foreground mb-2">
-                      {selectedCategory.title}
-                    </h3>
-                    <p className="text-muted-foreground">{selectedCategory.description}</p>
-                  </div>
+            <div className="relative bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex">
+              {/* Left Sidebar */}
+              <div className="bg-muted/40 w-1/3 p-8 flex flex-col justify-center items-center">
+                <div className="flex flex-col space-y-3">
+                  <div className="w-3 h-3 bg-foreground rounded-full"></div>
+                  <div className="w-3 h-3 bg-muted-foreground/40 rounded-full"></div>
+                  <div className="w-3 h-3 bg-muted-foreground/40 rounded-full"></div>
+                </div>
+              </div>
+
+              {/* Right Content */}
+              <div className="flex-1 p-8 flex flex-col">
+                {/* Close Button */}
+                <div className="flex justify-end mb-6">
                   <button
                     onClick={() => setSelectedCategory(null)}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="w-12 h-12 rounded-full border-2 border-foreground flex items-center justify-center hover:bg-muted transition-colors"
                   >
-                    <X size={24} />
+                    <X size={20} />
                   </button>
                 </div>
 
-                <div className="space-y-8">
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-foreground">Overview</h4>
-                    <p className="text-muted-foreground leading-relaxed">
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-foreground mb-2">
+                      Brand Name/Brand Logo
+                    </h2>
+                  </div>
+
+                  <div className="mb-8">
+                    <h3 className="text-4xl font-bold text-foreground mb-6">
+                      {selectedCategory.title}
+                    </h3>
+                  </div>
+
+                  <div className="mb-8">
+                    <h4 className="text-2xl font-bold text-foreground mb-4">
+                      Product Description
+                    </h4>
+                  </div>
+
+                  <div className="space-y-4 mb-12">
+                    <p className="text-lg text-foreground leading-relaxed">
                       {selectedCategory.details.overview}
                     </p>
+                    {selectedCategory.details.features.map((feature, index) => (
+                      <p key={index} className="text-lg text-foreground">
+                        Product Information: {feature}
+                      </p>
+                    ))}
                   </div>
+                </div>
 
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <h4 className="text-xl font-semibold mb-4 text-foreground">Key Features</h4>
-                      <ul className="space-y-2">
-                        {selectedCategory.details.features.map((feature, index) => (
-                          <li key={index} className="flex items-center text-muted-foreground">
-                            <div className="w-2 h-2 bg-accent rounded-full mr-3" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
+                {/* Navigation */}
+                <div className="flex items-center justify-center space-x-8 mt-auto">
+                  <button className="flex items-center space-x-2 text-foreground hover:text-accent transition-colors">
+                    <div className="w-10 h-10 rounded-full border-2 border-foreground flex items-center justify-center">
+                      <ArrowRight size={16} className="rotate-180" />
                     </div>
-
-                    <div>
-                      <h4 className="text-xl font-semibold mb-4 text-foreground">Partner Brands</h4>
-                      <div className="space-y-2">
-                        {selectedCategory.details.brands.map((brand, index) => (
-                          <div key={index} className="text-muted-foreground font-medium">
-                            {brand}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <span className="font-medium">Previous Brand</span>
+                  </button>
+                  
+                  <div className="flex space-x-2">
+                    <div className="w-2 h-2 bg-foreground rounded-full"></div>
+                    <div className="w-2 h-2 bg-muted-foreground/40 rounded-full"></div>
+                    <div className="w-2 h-2 bg-muted-foreground/40 rounded-full"></div>
                   </div>
-
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-foreground">Product Gallery</h4>
-                    <div className="grid grid-cols-4 gap-4">
-                      {selectedCategory.details.images.map((image, index) => (
-                        <div key={index} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-4xl">
-                          {image}
-                        </div>
-                      ))}
+                  
+                  <button className="flex items-center space-x-2 text-foreground hover:text-accent transition-colors">
+                    <span className="font-medium">Next Brand</span>
+                    <div className="w-10 h-10 rounded-full border-2 border-foreground flex items-center justify-center">
+                      <ArrowRight size={16} />
                     </div>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
