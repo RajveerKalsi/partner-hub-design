@@ -87,7 +87,7 @@ const CategoriesSection = () => {
           {categories.map((category) => (
             <div
               key={category.id}
-              className="card-category"
+              className="card-category group"
               onClick={() => setSelectedCategory(category)}
             >
               <div className="card-category-image flex items-center justify-center text-8xl">

@@ -180,7 +180,7 @@
   }
 
   .card-category {
-    @apply relative overflow-hidden rounded-2xl aspect-[4/3] group cursor-pointer;
+    @apply relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer;
   }
 
   .card-category-image {
@@ -201,7 +201,7 @@
   }
 
   .product-card {
-    @apply card-elevated p-0 group;
+    @apply card-elevated p-0;
   }
 
   .product-image {

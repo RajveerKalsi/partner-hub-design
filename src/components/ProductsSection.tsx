@@ -123,7 +123,7 @@ const ProductsSection = () => {
           'lg:grid-cols-4'
         } stagger-children`}>
           {currentProducts.map((product) => (
-            <div key={product.id} className="product-card">
+            <div key={product.id} className="product-card group">
               <div className="p-0">
                 <div className="aspect-square bg-muted flex items-center justify-center text-6xl">
                   {product.image}
