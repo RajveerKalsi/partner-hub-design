@@ -20,7 +20,7 @@ const CategoriesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const autoplay = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay.current]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, axis: 'y' }, [autoplay.current]);
 
   const navigateToCategory = (direction: 'prev' | 'next') => {
     if (!selectedCategory) return;
@@ -171,7 +171,7 @@ const CategoriesSection = () => {
                   <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full">
                       {selectedCategory.details.images.map((image, index) => (
-                        <div key={index} className="embla__slide flex-[0_0_100%] min-w-0">
+                        <div key={index} className="embla__slide h-full">
                           <div className="h-full flex items-center justify-center text-9xl bg-gradient-to-br from-muted to-muted/50">
                             {image}
                           </div>

@@ -261,3 +261,18 @@
     transform: translateY(0);
   }
 }
+
+/* Embla Carousel Styles */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-height: 0;
+}
