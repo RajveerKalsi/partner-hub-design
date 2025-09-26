@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { ArrowRight, X } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 interface Category {
   id: number;
@@ -16,6 +18,47 @@ interface Category {
 
 const CategoriesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const autoplay = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay.current]);
+
+  const navigateToCategory = (direction: 'prev' | 'next') => {
+    if (!selectedCategory) return;
+    
+    const currentIndex = categories.findIndex(cat => cat.id === selectedCategory.id);
+    let newIndex;
+    
+    if (direction === 'prev') {
+      newIndex = currentIndex === 0 ? categories.length - 1 : currentIndex - 1;
+    } else {
+      newIndex = currentIndex === categories.length - 1 ? 0 : currentIndex + 1;
+    }
+    
+    setSelectedCategory(categories[newIndex]);
+    setCurrentImageIndex(0);
+  };
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setCurrentImageIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on('select', onSelect);
+    onSelect();
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      setCurrentImageIndex(0);
+      autoplay.current.reset();
+    }
+  }, [selectedCategory]);
 
   const categories: Category[] = [
     {
@@ -113,65 +156,116 @@ const CategoriesSection = () => {
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setSelectedCategory(null)}
             />
-            <div className="relative bg-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-8">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-3xl font-bold text-foreground mb-2">
-                      {selectedCategory.title}
-                    </h3>
-                    <p className="text-muted-foreground">{selectedCategory.description}</p>
-                  </div>
-                  <button
-                    onClick={() => setSelectedCategory(null)}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
+            <div className="relative bg-background rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className="absolute top-4 right-4 z-10 w-8 h-8 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-background transition-colors"
+              >
+                <X size={16} />
+              </button>
 
-                <div className="space-y-8">
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-foreground">Overview</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {selectedCategory.details.overview}
-                    </p>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <h4 className="text-xl font-semibold mb-4 text-foreground">Key Features</h4>
-                      <ul className="space-y-2">
-                        {selectedCategory.details.features.map((feature, index) => (
-                          <li key={index} className="flex items-center text-muted-foreground">
-                            <div className="w-2 h-2 bg-accent rounded-full mr-3" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-xl font-semibold mb-4 text-foreground">Partner Brands</h4>
-                      <div className="space-y-2">
-                        {selectedCategory.details.brands.map((brand, index) => (
-                          <div key={index} className="text-muted-foreground font-medium">
-                            {brand}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-foreground">Product Gallery</h4>
-                    <div className="grid grid-cols-4 gap-4">
+              <div className="flex h-full">
+                {/* Left Side - Image Carousel */}
+                <div className="w-1/2 bg-muted relative">
+                  <div className="embla h-full" ref={emblaRef}>
+                    <div className="embla__container h-full">
                       {selectedCategory.details.images.map((image, index) => (
-                        <div key={index} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-4xl">
-                          {image}
+                        <div key={index} className="embla__slide flex-[0_0_100%] min-w-0">
+                          <div className="h-full flex items-center justify-center text-9xl bg-gradient-to-br from-muted to-muted/50">
+                            {image}
+                          </div>
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Vertical Dots Indicator */}
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col space-y-2">
+                    {selectedCategory.details.images.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          index === currentImageIndex ? 'bg-primary' : 'bg-white/40'
+                        }`}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Side - Content */}
+                <div className="w-1/2 p-8 flex flex-col justify-between">
+                  <div className="space-y-6">
+                    {/* Brand/Category Header */}
+                    <div className="space-y-2">
+                      <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                        EST. 2020 / {selectedCategory.title.toUpperCase()}
+                      </div>
+                      <h2 className="text-3xl font-bold text-foreground">
+                        {selectedCategory.details.brands[0] || selectedCategory.title}
+                      </h2>
+                    </div>
+
+                    {/* Description */}
+                    <div className="space-y-4">
+                      <p className="text-foreground leading-relaxed">
+                        {selectedCategory.details.overview}
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="space-y-3">
+                      {selectedCategory.details.features.slice(0, 3).map((feature, index) => (
+                        <div key={index} className="text-muted-foreground">
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Navigation */}
+                  <div className="flex items-center justify-between pt-6 border-t border-border">
+                    <button
+                      onClick={() => navigateToCategory('prev')}
+                      className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
+                    >
+                      <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-foreground transition-colors">
+                        <ChevronLeft size={16} />
+                      </div>
+                      <span className="text-sm font-medium">
+                        PREV: {categories[categories.findIndex(cat => cat.id === selectedCategory.id) === 0 
+                          ? categories.length - 1 
+                          : categories.findIndex(cat => cat.id === selectedCategory.id) - 1]?.title.split(' ')[0]}
+                      </span>
+                    </button>
+
+                    <div className="flex space-x-1">
+                      {categories.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`w-2 h-2 rounded-full ${
+                            index === categories.findIndex(cat => cat.id === selectedCategory.id)
+                              ? 'bg-foreground'
+                              : 'bg-muted-foreground/30'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => navigateToCategory('next')}
+                      className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
+                    >
+                      <span className="text-sm font-medium">
+                        NEXT: {categories[categories.findIndex(cat => cat.id === selectedCategory.id) === categories.length - 1 
+                          ? 0 
+                          : categories.findIndex(cat => cat.id === selectedCategory.id) + 1]?.title.split(' ')[0]}
+                      </span>
+                      <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-foreground transition-colors">
+                        <ChevronRight size={16} />
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
