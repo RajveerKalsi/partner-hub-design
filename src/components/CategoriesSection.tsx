@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 interface Category {
   id: number;
@@ -16,6 +17,21 @@ interface Category {
 
 const CategoriesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
+  const navigateCategory = (direction: 'prev' | 'next') => {
+    if (!selectedCategory) return;
+    
+    const currentIndex = categories.findIndex(cat => cat.id === selectedCategory.id);
+    let newIndex;
+    
+    if (direction === 'prev') {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : categories.length - 1;
+    } else {
+      newIndex = currentIndex < categories.length - 1 ? currentIndex + 1 : 0;
+    }
+    
+    setSelectedCategory(categories[newIndex]);
+  };
 
   const categories: Category[] = [
     {
@@ -113,34 +129,59 @@ const CategoriesSection = () => {
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setSelectedCategory(null)}
             />
-            <div className="relative bg-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-8">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-3xl font-bold text-foreground mb-2">
-                      {selectedCategory.title}
-                    </h3>
-                    <p className="text-muted-foreground">{selectedCategory.description}</p>
-                  </div>
-                  <button
-                    onClick={() => setSelectedCategory(null)}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <X size={24} />
-                  </button>
+            <div className="relative bg-card rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+              <div className="flex h-full">
+                {/* Left Side - Image Carousel */}
+                <div className="w-1/2 bg-muted/50 relative">
+                  <Carousel className="w-full h-full">
+                    <CarouselContent className="h-full">
+                      {selectedCategory.details.images.map((image, index) => (
+                        <CarouselItem key={index} className="h-full">
+                          <div className="flex items-center justify-center h-full p-8">
+                            <div className="text-8xl">{image}</div>
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-4" />
+                    <CarouselNext className="right-4" />
+                  </Carousel>
                 </div>
 
-                <div className="space-y-8">
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-foreground">Overview</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {selectedCategory.details.overview}
-                    </p>
+                {/* Right Side - Content */}
+                <div className="w-1/2 p-8 flex flex-col">
+                  {/* Header with close button */}
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="flex-1">
+                      <h2 className="text-2xl font-bold text-foreground mb-2">
+                        Brand Name/Brand Logo
+                      </h2>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">
+                        {selectedCategory.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-6">
+                        {selectedCategory.description}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setSelectedCategory(null)}
+                      className="text-muted-foreground hover:text-foreground transition-colors ml-4"
+                    >
+                      <X size={24} />
+                    </button>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-8">
+                  {/* Product Information */}
+                  <div className="flex-1 space-y-6">
                     <div>
-                      <h4 className="text-xl font-semibold mb-4 text-foreground">Key Features</h4>
+                      <h4 className="text-lg font-semibold text-foreground mb-3">Product Information</h4>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {selectedCategory.details.overview}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground mb-3">Key Features</h4>
                       <ul className="space-y-2">
                         {selectedCategory.details.features.map((feature, index) => (
                           <li key={index} className="flex items-center text-muted-foreground">
@@ -152,26 +193,47 @@ const CategoriesSection = () => {
                     </div>
 
                     <div>
-                      <h4 className="text-xl font-semibold mb-4 text-foreground">Partner Brands</h4>
-                      <div className="space-y-2">
+                      <h4 className="text-lg font-semibold text-foreground mb-3">Partner Brands</h4>
+                      <div className="flex flex-wrap gap-2">
                         {selectedCategory.details.brands.map((brand, index) => (
-                          <div key={index} className="text-muted-foreground font-medium">
+                          <span key={index} className="px-3 py-1 bg-muted rounded-full text-sm text-muted-foreground">
                             {brand}
-                          </div>
+                          </span>
                         ))}
                       </div>
                     </div>
                   </div>
 
-                  <div>
-                    <h4 className="text-xl font-semibold mb-4 text-foreground">Product Gallery</h4>
-                    <div className="grid grid-cols-4 gap-4">
-                      {selectedCategory.details.images.map((image, index) => (
-                        <div key={index} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-4xl">
-                          {image}
-                        </div>
+                  {/* Navigation Footer */}
+                  <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
+                    <button
+                      onClick={() => navigateCategory('prev')}
+                      className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <ChevronLeft size={20} />
+                      <span>Previous Brand</span>
+                    </button>
+                    
+                    <div className="flex gap-2">
+                      {categories.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            categories[index].id === selectedCategory.id 
+                              ? 'bg-foreground' 
+                              : 'bg-muted-foreground/30'
+                          }`}
+                        />
                       ))}
                     </div>
+
+                    <button
+                      onClick={() => navigateCategory('next')}
+                      className="flex items-center gap-2 px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <span>Next Brand</span>
+                      <ChevronRight size={20} />
+                    </button>
                   </div>
                 </div>
               </div>
