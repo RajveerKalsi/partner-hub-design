@@ -165,14 +165,14 @@ const CategoriesSection = () => {
                 <X size={16} />
               </button>
 
-              <div className="flex h-full">
+              <div className="flex flex-col md:flex-row h-full">
                 {/* Left Side - Image Carousel */}
-                <div className="w-1/2 bg-muted relative">
+                <div className="w-full md:w-1/2 h-64 md:h-full bg-muted relative">
                   <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full">
                       {selectedCategory.details.images.map((image, index) => (
                         <div key={index} className="embla__slide h-full">
-                          <div className="h-full flex items-center justify-center text-9xl bg-gradient-to-br from-muted to-muted/50">
+                          <div className="h-full flex items-center justify-center text-6xl md:text-9xl bg-gradient-to-br from-muted to-muted/50">
                             {image}
                           </div>
                         </div>
@@ -180,8 +180,8 @@ const CategoriesSection = () => {
                     </div>
                   </div>
 
-                  {/* Vertical Dots Indicator */}
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col space-y-2">
+                  {/* Vertical Dots Indicator - Horizontal on mobile */}
+                  <div className="absolute left-1/2 bottom-4 -translate-x-1/2 flex space-x-2 md:left-4 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 md:flex-col md:space-x-0 md:space-y-2">
                     {selectedCategory.details.images.map((_, index) => (
                       <button
                         key={index}
@@ -195,7 +195,7 @@ const CategoriesSection = () => {
                 </div>
 
                 {/* Right Side - Content */}
-                <div className="w-1/2 p-8 flex flex-col justify-between">
+                <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-between">
                   <div className="space-y-6">
                     {/* Brand/Category Header */}
                     <div className="space-y-2">
