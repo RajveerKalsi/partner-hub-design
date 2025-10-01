@@ -12,23 +12,12 @@ const AboutSection = () => {
                 </h2>
               </div>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                We believe in the power of strategic partnerships to drive innovation 
-                and deliver exceptional value to our customers.
-              </p>
+                At Houston Logistics, we go beyond transportation — we deliver confidence.</p>
             </div>
 
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                For over a decade, we've been at the forefront of identifying and nurturing 
-                relationships with premium brands that share our commitment to quality, 
-                innovation, and customer satisfaction. Our rigorous selection process ensures 
-                that every partner meets the highest standards of excellence.
-              </p>
-              
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Through these partnerships, we're able to offer our customers access to 
-                cutting-edge products, exclusive collections, and services that define 
-                the future of their respective industries.
+                As a trusted <b>3PL</b> partner, we specialize in warehousing, distribution, and end-to-end logistics solutions designed to help businesses grow. With a team driven by precision and innovation, we ensure every shipment is handled with care, speed, and reliability. Our mission is simple: to keep your business moving forward.”
               </p>
             </div>
 
