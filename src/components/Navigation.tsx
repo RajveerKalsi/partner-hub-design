@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,37 +9,29 @@ const Navigation = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Categories', href: '#categories' },
-    { name: 'Products', href: '#products' },
-    { name: 'Contact', href: '#contact' }
+    { name: "Home", href: "#home" },
+    { name: "About Us", href: "#about" },
+    { name: "Categories", href: "#categories" },
+    { name: "Products", href: "#products" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
-    if (href.startsWith('#')) {
-      if (location.pathname !== '/') {
-        navigate('/');
+    if (href.startsWith("#")) {
+      if (location.pathname !== "/") {
+        navigate("/");
         setTimeout(() => {
           const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
+          element?.scrollIntoView({ behavior: "smooth" });
         }, 100);
       } else {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
       }
       setIsOpen(false);
     }
@@ -47,45 +39,59 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className={`nav-floating transition-all duration-300 ${scrolled ? 'bg-card/98' : 'bg-card/60'} backdrop-blur-sm border-b border-border`}>
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img
-              src="/h-l.png"
-              alt="Logo"
-              className="h-10 w-auto object-contain" 
-            />
-          </div>
+      {/* ====================== Desktop Nav ====================== */}
+      <nav
+        className={`hidden md:flex nav-floating transition-all space-x-8 duration-300 items-center justify-between mx-auto max-w-6xl px-6 ${
+          scrolled ? "bg-card/100" : "bg-card/50"
+        } backdrop-blur-sm border-b border-border`}
+      >
+        {/* Logo inside container */}
+        <div className="flex items-center">
+          <img
+            src="/h-l.png"
+            alt="Logo"
+            className="h-8 w-auto object-contain"
+          />
+        </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 ml-10">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        {/* Desktop Nav Items */}
+        <div className="flex items-center space-x-8">
+          {navItems.map((item) => (
+            <button
+              key={item.name}
+              onClick={() => scrollToSection(item.href)}
+              className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+            >
+              {item.name}
+            </button>
+          ))}
         </div>
       </nav>
+
+      {/* ====================== Mobile Nav ====================== */}
+      {/* Mobile Logo (separate, pinned left) */}
+      <div className="fixed top-5 left-4 z-50 md:hidden pointer-events-none">
+        <img src="/h-l.png" alt="Logo" className="h-8 w-auto object-contain" />
+      </div>
+
+      {/* Mobile Hamburger (separate, pinned right with its own background) */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`md:hidden fixed top-4 right-4 z-50 p-2 rounded-full border border-border 
+    ${scrolled ? "bg-card/100" : "bg-card/50"} 
+    backdrop-blur-sm text-foreground hover:bg-card/90 transition-colors`}
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
       {/* Mobile Menu */}
       {isOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
-          <div className="fixed top-20 left-1/2 -translate-x-1/2 w-11/12 max-w-sm bg-card rounded-2xl border border-border shadow-2xl">
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+          <div className="fixed top-16 right-4 w-60 bg-card rounded-2xl border border-border shadow-2xl">
             <div className="p-6 space-y-4">
               {navItems.map((item) => (
                 <button

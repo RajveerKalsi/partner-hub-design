@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import eCommerceFulfillment from "@/assets/e-commerce-fulfillment.webp";
+import reverseLogistics from "@/assets/reverse-logistics.webp";
+import shippingFrieghtManagement from "@/assets/shipping-frieght-management.webp";
+import warehousing from "@/assets/warehousing.webp";
 
 interface Category {
   id: number;
@@ -71,7 +75,7 @@ const CategoriesSection = () => {
       id: 1,
       title: "Technology & Electronics",
       description: "Cutting-edge tech solutions and innovative electronics",
-      image: "🔧",
+      image: eCommerceFulfillment,
       details: {
         overview:
           "Our technology partners represent the pinnacle of innovation in electronics, software, and digital solutions. From enterprise-grade hardware to consumer electronics, we work with brands that push the boundaries of what's possible.",
@@ -98,14 +102,14 @@ const CategoriesSection = () => {
           "AI-Powered Systems",
         ],
         brands: ["TechCorp", "InnovateLab", "DigitalEdge", "SmartSolutions"],
-        images: ["📱", "💻", "⌚", "🖥️"],
+        images: [eCommerceFulfillment, reverseLogistics, shippingFrieghtManagement, warehousing],
       },
     },
     {
       id: 2,
       title: "Fashion & Lifestyle",
       description: "Premium fashion brands and lifestyle products",
-      image: "👔",
+      image: reverseLogistics,
       details: {
         overview:
           "Our fashion and lifestyle partners embody sophistication, quality, and timeless design. From haute couture to everyday essentials, we curate brands that define style and elevate personal expression.",
@@ -124,7 +128,7 @@ const CategoriesSection = () => {
       id: 3,
       title: "Health & Wellness",
       description: "Premium health and wellness solutions",
-      image: "🏥",
+      image: shippingFrieghtManagement,
       details: {
         overview:
           "Health and wellness are at the core of our mission. Our partners in this space deliver innovative solutions that promote better living, from fitness equipment to nutritional supplements and medical devices.",
@@ -143,7 +147,7 @@ const CategoriesSection = () => {
       id: 4,
       title: "Home & Living",
       description: "Elegant home solutions and living essentials",
-      image: "🏠",
+      image: warehousing,
       details: {
         overview:
           "Transform your living space with our home and living partners. From smart home automation to elegant furniture and decor, we offer solutions that make your house a true home.",
@@ -182,7 +186,11 @@ const CategoriesSection = () => {
               onClick={() => setSelectedCategory(category)}
             >
               <div className="card-category-image flex items-center justify-center text-8xl">
-                {category.image}
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  className="object-cover w-full h-full rounded-lg"
+                />
               </div>
               <div className="card-category-overlay" />
               <div className="card-category-content">
@@ -226,7 +234,11 @@ const CategoriesSection = () => {
                           className="embla__slide h-full flex-[0_0_100%]"
                         >
                           <div className="h-full flex items-center justify-center text-6xl md:text-9xl bg-gradient-to-br from-muted to-muted/50">
-                            {image}
+                            <img
+                              src={image}
+                              alt={`Slide ${index + 1}`}
+                              className="object-cover w-full h-full rounded-lg"
+                            />
                           </div>
                         </div>
                       ))}

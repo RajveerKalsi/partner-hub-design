@@ -1,3 +1,6 @@
+import whyChooseUsImage from "@/assets/why-choose-us.webp";
+import whatIs3pl from "@/assets/what-is-3pl.webp";
+
 const CompanyDetails = () => {
   const details = [
     {
@@ -10,7 +13,7 @@ const CompanyDetails = () => {
         "Delivering exceptional customer experiences",
         "Building long-term strategic relationships",
       ],
-      image: "🎯",
+      image: whatIs3pl,
       imagePosition: "right",
     },
     {
@@ -23,21 +26,8 @@ const CompanyDetails = () => {
         "Dedicated support and service",
         "Global network of premium partners",
       ],
-      image: "🏆",
+      image: whyChooseUsImage,
       imagePosition: "left",
-    },
-    {
-      title: "Our Approach",
-      content:
-        "We believe in a personalized approach to brand partnerships, understanding that each collaboration is unique and requires tailored strategies for success.",
-      points: [
-        "Comprehensive market analysis",
-        "Customized partnership strategies",
-        "Ongoing performance monitoring",
-        "Continuous optimization and improvement"
-      ],
-      image: "📊",
-      imagePosition: "right",
     },
   ];
 
@@ -104,10 +94,12 @@ const CompanyDetails = () => {
               >
                 <div className="card-elevated p-0 overflow-hidden">
                   <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                    <div className="text-center text-muted-foreground">
-                      <div className="text-8xl mb-4">{detail.image}</div>
-                      <p className="font-medium text-lg">{detail.title}</p>
-                    </div>
+                    {/* Only show image */}
+                    <img
+                      src={detail.image}
+                      alt={detail.title}
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                 </div>
 

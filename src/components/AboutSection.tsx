@@ -1,3 +1,5 @@
+import aboutSection from "@/assets/about-us.webp";
+
 const AboutSection = () => {
   return (
     <section id="about" className="py-24 bg-background">
@@ -37,13 +39,14 @@ const AboutSection = () => {
           <div className="relative">
             <div className="card-elevated p-0 overflow-hidden">
               <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <div className="text-6xl mb-4">🤝</div>
-                  <p className="font-medium">Partnership Excellence</p>
-                </div>
+                <img
+                  src={aboutSection}
+                  alt="About Section"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
-            
+
             {/* Decorative Elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-xl" />
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-xl" />
