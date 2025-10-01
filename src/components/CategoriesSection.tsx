@@ -81,6 +81,21 @@ const CategoriesSection = () => {
           "Mobile Technology",
           "IoT Devices",
           "AI-Powered Systems",
+          "Smart Home Solutions",
+          "Enterprise Hardware",
+          "Mobile Technology",
+          "IoT Devices",
+          "AI-Powered Systems",
+          "Smart Home Solutions",
+          "Enterprise Hardware",
+          "Mobile Technology",
+          "IoT Devices",
+          "AI-Powered Systems",
+          "Smart Home Solutions",
+          "Enterprise Hardware",
+          "Mobile Technology",
+          "IoT Devices",
+          "AI-Powered Systems",
         ],
         brands: ["TechCorp", "InnovateLab", "DigitalEdge", "SmartSolutions"],
         images: ["📱", "💻", "⌚", "🖥️"],
@@ -192,7 +207,7 @@ const CategoriesSection = () => {
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setSelectedCategory(null)}
             />
-            <div className="relative bg-background rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+            <div className="relative bg-background rounded-2xl max-w-6xl w-full h-[80vh] overflow-hidden shadow-2xl">
               {/* Close Button */}
               <button
                 onClick={() => setSelectedCategory(null)}
@@ -203,7 +218,7 @@ const CategoriesSection = () => {
 
               <div className="flex flex-col md:flex-row h-full">
                 {/* Left Side - Image Carousel */}
-                <div className="w-full md:w-1/2 h-64 md:h-full bg-muted relative">
+                <div className="w-full md:w-1/2 h-64 md:h-full bg-muted relative cursor-grab">
                   <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full">
                       {selectedCategory.details.images.map((image, index) => (
@@ -240,40 +255,43 @@ const CategoriesSection = () => {
                 </div>
 
                 {/* Right Side - Content */}
-                <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-between">
-                  <div className="space-y-6">
-                    {/* Brand/Category Header */}
-                    <div className="space-y-2">
-                      <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                        EST. 2020 / {selectedCategory.title.toUpperCase()}
-                      </div>
-                      <h2 className="text-3xl font-bold text-foreground">
-                        {selectedCategory.details.brands[0] ||
-                          selectedCategory.title}
-                      </h2>
+                <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col h-full overflow-hidden">
+                  {/* Top: Header */}
+                  <div className="flex-none space-y-2">
+                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                      EST. 2020 / {selectedCategory.title.toUpperCase()}
                     </div>
+                    <h2 className="text-3xl font-bold text-foreground">
+                      {selectedCategory.details.brands[0] ||
+                        selectedCategory.title}
+                    </h2>
+                  </div>
 
+                  {/* Middle: Description + Features (scrollable) */}
+                  <div
+                    className="flex-1 overflow-y-auto mt-4 pr-2 space-y-4 
+                scrollbar-thin scrollbar-thumb-muted-foreground scrollbar-track-transparent 
+                scroll-smooth"
+                  >
                     {/* Description */}
-                    <div className="space-y-4">
-                      <p className="text-foreground leading-relaxed">
-                        {selectedCategory.details.overview}
-                      </p>
-                    </div>
+                    <p className="text-foreground leading-relaxed">
+                      {selectedCategory.details.overview}
+                    </p>
 
                     {/* Features */}
                     <div className="space-y-3">
-                      {selectedCategory.details.features
-                        .slice(0, 3)
-                        .map((feature, index) => (
+                      {selectedCategory.details.features.map(
+                        (feature, index) => (
                           <div key={index} className="text-muted-foreground">
                             {feature}
                           </div>
-                        ))}
+                        )
+                      )}
                     </div>
                   </div>
 
-                  {/* Navigation */}
-                  <div className="flex items-center justify-between pt-6 border-t border-border">
+                  {/* Bottom: Navigation */}
+                  <div className="flex-none flex items-center justify-between pt-6 border-t border-border px-4 md:px-8">
                     <button
                       onClick={() => navigateToCategory("prev")}
                       className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"

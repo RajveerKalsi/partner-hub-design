@@ -47,7 +47,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className={`nav-floating transition-all duration-300 ${scrolled ? 'bg-card/98' : 'bg-card/95'}`}>
+      <nav className={`nav-floating transition-all duration-300 ${scrolled ? 'bg-card/98' : 'bg-card/60'} backdrop-blur-sm border-b border-border`}>
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">

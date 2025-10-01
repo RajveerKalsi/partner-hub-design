@@ -1,5 +1,5 @@
 import { ChevronDown } from 'lucide-react';
-import heroBackground from '@/assets/hero-bg.jpg';
+import heroBackground from '@/assets/hero-bg.webp';
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -16,7 +16,7 @@ const HeroSection = () => {
         <img 
           src={heroBackground} 
           alt="Hero background" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/60" />
       </div>

@@ -2,7 +2,7 @@ const SingleImageSection = () => {
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-full mx-auto">
           <div className="text-center mb-16">
             <div className="section-divider">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">

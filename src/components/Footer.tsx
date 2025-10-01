@@ -137,7 +137,11 @@ const Footer = () => {
           {/* Newsletter & Social */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h4 className="font-semibold mb-4 text-lg">Stay Updated</h4>
+              <h4 className="font-semibold mb-4 text-lg">Our Mission</h4>
+              <p className="text-primary-foreground/80 text-sm mb-4">
+                We connect premium brands with discerning customers, delivering innovation, quality, and trust in every partnership.
+              </p>
+              {/* <h4 className="font-semibold mb-4 text-lg">Stay Updated</h4>
               <p className="text-primary-foreground/80 text-sm mb-4">
                 Subscribe to our newsletter for the latest partnership opportunities 
                 and industry insights.
@@ -151,7 +155,7 @@ const Footer = () => {
                 <button className="px-4 py-2 bg-accent text-accent-foreground rounded-r-lg hover:bg-accent-hover transition-colors">
                   <Mail size={18} />
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div>
