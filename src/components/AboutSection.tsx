@@ -10,7 +10,7 @@ const AboutSection = () => {
             <div className="space-y-4">
               <div className="section-divider">
                 <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8">
-                  About Our Vision
+                  About Us
                 </h2>
               </div>
               <p className="text-xl text-muted-foreground leading-relaxed">
