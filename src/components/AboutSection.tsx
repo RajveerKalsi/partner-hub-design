@@ -1,3 +1,5 @@
+import aboutSection from "@/assets/about-us.webp";
+
 const AboutSection = () => {
   return (
     <section id="about" className="py-24 bg-background">
@@ -12,23 +14,24 @@ const AboutSection = () => {
                 </h2>
               </div>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                We believe in the power of strategic partnerships to drive innovation 
-                and deliver exceptional value to our customers.
+                We believe in the power of strategic partnerships to drive
+                innovation and deliver exceptional value to our customers.
               </p>
             </div>
 
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                For over a decade, we've been at the forefront of identifying and nurturing 
-                relationships with premium brands that share our commitment to quality, 
-                innovation, and customer satisfaction. Our rigorous selection process ensures 
-                that every partner meets the highest standards of excellence.
+                For over a decade, we've been at the forefront of identifying
+                and nurturing relationships with premium brands that share our
+                commitment to quality, innovation, and customer satisfaction.
+                Our rigorous selection process ensures that every partner meets
+                the highest standards of excellence.
               </p>
-              
+
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Through these partnerships, we're able to offer our customers access to 
-                cutting-edge products, exclusive collections, and services that define 
-                the future of their respective industries.
+                Through these partnerships, we're able to offer our customers
+                access to cutting-edge products, exclusive collections, and
+                services that define the future of their respective industries.
               </p>
             </div>
 
@@ -48,13 +51,14 @@ const AboutSection = () => {
           <div className="relative">
             <div className="card-elevated p-0 overflow-hidden">
               <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <div className="text-6xl mb-4">🤝</div>
-                  <p className="font-medium">Partnership Excellence</p>
-                </div>
+                <img
+                  src={aboutSection}
+                  alt="About Section"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
-            
+
             {/* Decorative Elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-xl" />
             <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-xl" />
