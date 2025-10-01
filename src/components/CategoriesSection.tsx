@@ -170,12 +170,11 @@ const CategoriesSection = () => {
         <div className="text-center mb-16">
           <div className="section-divider">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-              Our Categories
+              Our Services
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our diverse range of partner categories, each carefully
-            curated to deliver exceptional quality and innovation.
+            End-to-end logistics made simple: from warehousing to reverse logistics - all handled with precision and speed.
           </p>
         </div>
 

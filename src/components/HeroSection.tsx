@@ -25,13 +25,13 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="fade-in-up">
           <h1 className="hero-title mb-6">
-            Premium Brand 
-            <span className="block text-accent">Partnerships</span>
+            Seamless Logistics, Built for Growth
+            <span className="block text-accent">Houston Logistics</span>
           </h1>
           
           <p className="hero-subtitle mb-12 mx-auto">
-            Discover exceptional brands and products through our curated partnerships. 
-            Excellence in every collaboration, innovation in every product.
+            3PL Warehousing | E-commerce Fulifillment | Shipping & Freight Management | Reverse Logistics
+           {/* Smart, reliable logistics built for modern businesses. Our team ensures every shipment moves with speed and precision. */}
           </p>
           
           <button 
