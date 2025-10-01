@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -169,15 +170,15 @@ const Footer = () => {
               © {currentYear} Houston Logistics. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <button className="text-primary-foreground/80 hover:text-accent transition-colors">
+              <Link to="/privacy-policy" className="text-primary-foreground/80 hover:text-accent transition-colors">
                 Privacy Policy
-              </button>
-              <button className="text-primary-foreground/80 hover:text-accent transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="text-primary-foreground/80 hover:text-accent transition-colors">
                 Terms of Service
-              </button>
-              <button className="text-primary-foreground/80 hover:text-accent transition-colors">
+              </Link>
+              <Link to="/cookie-policy" className="text-primary-foreground/80 hover:text-accent transition-colors">
                 Cookie Policy
-              </button>
+              </Link>
             </div>
           </div>
         </div>
