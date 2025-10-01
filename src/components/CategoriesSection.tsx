@@ -236,7 +236,7 @@ const CategoriesSection = () => {
 
                   {/* Vertical Dots Indicator - Horizontal on mobile */}
                   <div
-                    className="absolute left-1/2 bottom-4 -translate-x-1/2 flex space-x-2 
+                    className="absolute left-1/2 bottom-50 -translate-x-1/2 flex space-x-2 
                 md:left-4 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 
                 md:flex-col md:space-x-0 md:space-y-2"
                   >
@@ -246,7 +246,7 @@ const CategoriesSection = () => {
                         className={`w-2 h-2 rounded-full transition-colors ${
                           index === currentImageIndex
                             ? "bg-primary"
-                            : "bg-white/40"
+                            : "bg-white/100"
                         }`}
                         onClick={() => emblaApi?.scrollTo(index)}
                       />
