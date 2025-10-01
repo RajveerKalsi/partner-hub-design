@@ -36,13 +36,15 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-primary">
-              Logo
-            </div>
+            <img
+              src="/h-l.png"
+              alt="Logo"
+              className="h-10 w-auto object-contain" 
+            />
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 ml-10">
             {navItems.map((item) => (
               <button
                 key={item.name}

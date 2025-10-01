@@ -16,12 +16,12 @@ const Footer = () => {
       { name: 'Consulting', href: '#' },
       { name: 'Support', href: '#contact' }
     ],
-    resources: [
-      { name: 'Blog', href: '#' },
-      { name: 'Case Studies', href: '#' },
-      { name: 'Documentation', href: '#' },
-      { name: 'Help Center', href: '#' }
-    ]
+    // resources: [
+    //   { name: 'Blog', href: '#' },
+    //   { name: 'Case Studies', href: '#' },
+    //   { name: 'Documentation', href: '#' },
+    //   { name: 'Help Center', href: '#' }
+    // ]
   };
 
   const socialLinks = [
@@ -47,7 +47,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-4">BrandHub</h3>
+              <h3 className="text-2xl font-bold mb-4">Houston Logistics</h3>
               <p className="text-primary-foreground/80 leading-relaxed">
                 Connecting exceptional brands with discerning customers through 
                 strategic partnerships and innovative solutions.
@@ -57,7 +57,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-accent" />
-                <span className="text-primary-foreground/90">partnerships@brandhub.com</span>
+                <span className="text-primary-foreground/90">partnerships@logistics.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-accent" />
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
 
           {/* Links Sections */}
-          <div className="lg:col-span-2 grid md:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-semibold mb-4 text-lg">Company</h4>
               <ul className="space-y-3">
@@ -104,7 +104,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="font-semibold mb-4 text-lg">Resources</h4>
               <ul className="space-y-3">
                 {footerLinks.resources.map((link) => (
@@ -118,7 +118,7 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
 
           {/* Newsletter & Social */}
@@ -166,7 +166,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="text-primary-foreground/80 text-sm">
-              © {currentYear} BrandHub. All rights reserved.
+              © {currentYear} Houston Logistics. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <button className="text-primary-foreground/80 hover:text-accent transition-colors">

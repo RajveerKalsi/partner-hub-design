@@ -1,7 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 const PartnersSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
   const partners = [
     { name: "TechCorp", logo: "🔧", industry: "Technology" },
@@ -15,7 +18,7 @@ const PartnersSection = () => {
     { name: "ModernHome", logo: "🏡", industry: "Home Design" },
     { name: "WellnessFirst", logo: "🧘", industry: "Wellness" },
     { name: "DigitalEdge", logo: "📱", industry: "Digital Solutions" },
-    { name: "ElegantSpaces", logo: "✨", industry: "Interior Design" }
+    { name: "ElegantSpaces", logo: "✨", industry: "Interior Design" },
   ];
 
   useEffect(() => {
@@ -24,21 +27,61 @@ const PartnersSection = () => {
 
     const scrollWidth = scrollContainer.scrollWidth;
     const clientWidth = scrollContainer.clientWidth;
-    
-    let scrollLeft = 0;
     const speed = 1; // pixels per frame
 
     const scroll = () => {
-      scrollLeft += speed;
-      if (scrollLeft >= scrollWidth - clientWidth) {
-        scrollLeft = 0;
+      if (!isDragging.current) {
+        if (scrollContainer.scrollLeft >= scrollWidth - clientWidth) {
+          scrollContainer.scrollLeft = 0;
+        } else {
+          scrollContainer.scrollLeft += speed;
+        }
       }
-      scrollContainer.scrollLeft = scrollLeft;
     };
 
     const intervalId = setInterval(scroll, 50);
 
     return () => clearInterval(intervalId);
+  }, []);
+
+  // Drag handlers
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const mouseDown = (e: MouseEvent) => {
+      isDragging.current = true;
+      startX.current = e.pageX - scrollContainer.offsetLeft;
+      scrollLeft.current = scrollContainer.scrollLeft;
+      scrollContainer.style.cursor = "grabbing";
+    };
+
+    const mouseLeaveOrUp = () => {
+      isDragging.current = false;
+      scrollContainer.style.cursor = "grab";
+    };
+
+    const mouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX.current) * 1.5; // drag speed multiplier
+      scrollContainer.scrollLeft = scrollLeft.current - walk;
+    };
+
+    scrollContainer.addEventListener("mousedown", mouseDown);
+    scrollContainer.addEventListener("mouseleave", mouseLeaveOrUp);
+    scrollContainer.addEventListener("mouseup", mouseLeaveOrUp);
+    scrollContainer.addEventListener("mousemove", mouseMove);
+
+    scrollContainer.style.cursor = "grab";
+
+    return () => {
+      scrollContainer.removeEventListener("mousedown", mouseDown);
+      scrollContainer.removeEventListener("mouseleave", mouseLeaveOrUp);
+      scrollContainer.removeEventListener("mouseup", mouseLeaveOrUp);
+      scrollContainer.removeEventListener("mousemove", mouseMove);
+    };
   }, []);
 
   return (
@@ -51,19 +94,18 @@ const PartnersSection = () => {
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We're proud to work with industry-leading brands that share our 
+            We're proud to work with industry-leading brands that share our
             commitment to excellence and innovation.
           </p>
         </div>
 
-        {/* Auto-scrolling Partners */}
+        {/* Auto + Drag Scrolling Partners */}
         <div className="relative overflow-hidden">
-          <div 
+          <div
             ref={scrollRef}
-            className="flex space-x-8 overflow-x-hidden"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex space-x-8 overflow-x-hidden select-none"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {/* Duplicate partners for seamless loop */}
             {[...partners, ...partners].map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
@@ -81,7 +123,7 @@ const PartnersSection = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Fade gradients */}
           <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent pointer-events-none" />

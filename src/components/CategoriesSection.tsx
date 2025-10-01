@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import { useState, useEffect, useRef } from "react";
+import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 interface Category {
   id: number;
@@ -17,23 +17,29 @@ interface Category {
 }
 
 const CategoriesSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const autoplay = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, axis: 'y' }, [autoplay.current]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, axis: "y" }, [
+    autoplay.current,
+  ]);
 
-  const navigateToCategory = (direction: 'prev' | 'next') => {
+  const navigateToCategory = (direction: "prev" | "next") => {
     if (!selectedCategory) return;
-    
-    const currentIndex = categories.findIndex(cat => cat.id === selectedCategory.id);
+
+    const currentIndex = categories.findIndex(
+      (cat) => cat.id === selectedCategory.id
+    );
     let newIndex;
-    
-    if (direction === 'prev') {
+
+    if (direction === "prev") {
       newIndex = currentIndex === 0 ? categories.length - 1 : currentIndex - 1;
     } else {
       newIndex = currentIndex === categories.length - 1 ? 0 : currentIndex + 1;
     }
-    
+
     setSelectedCategory(categories[newIndex]);
     setCurrentImageIndex(0);
   };
@@ -45,11 +51,11 @@ const CategoriesSection = () => {
       setCurrentImageIndex(emblaApi.selectedScrollSnap());
     };
 
-    emblaApi.on('select', onSelect);
+    emblaApi.on("select", onSelect);
     onSelect();
 
     return () => {
-      emblaApi.off('select', onSelect);
+      emblaApi.off("select", onSelect);
     };
   }, [emblaApi]);
 
@@ -67,11 +73,18 @@ const CategoriesSection = () => {
       description: "Cutting-edge tech solutions and innovative electronics",
       image: "🔧",
       details: {
-        overview: "Our technology partners represent the pinnacle of innovation in electronics, software, and digital solutions. From enterprise-grade hardware to consumer electronics, we work with brands that push the boundaries of what's possible.",
-        features: ["Smart Home Solutions", "Enterprise Hardware", "Mobile Technology", "IoT Devices", "AI-Powered Systems"],
+        overview:
+          "Our technology partners represent the pinnacle of innovation in electronics, software, and digital solutions. From enterprise-grade hardware to consumer electronics, we work with brands that push the boundaries of what's possible.",
+        features: [
+          "Smart Home Solutions",
+          "Enterprise Hardware",
+          "Mobile Technology",
+          "IoT Devices",
+          "AI-Powered Systems",
+        ],
         brands: ["TechCorp", "InnovateLab", "DigitalEdge", "SmartSolutions"],
-        images: ["📱", "💻", "⌚", "🖥️"]
-      }
+        images: ["📱", "💻", "⌚", "🖥️"],
+      },
     },
     {
       id: 2,
@@ -79,11 +92,18 @@ const CategoriesSection = () => {
       description: "Premium fashion brands and lifestyle products",
       image: "👔",
       details: {
-        overview: "Our fashion and lifestyle partners embody sophistication, quality, and timeless design. From haute couture to everyday essentials, we curate brands that define style and elevate personal expression.",
-        features: ["Luxury Apparel", "Sustainable Fashion", "Accessories", "Footwear", "Personal Care"],
+        overview:
+          "Our fashion and lifestyle partners embody sophistication, quality, and timeless design. From haute couture to everyday essentials, we curate brands that define style and elevate personal expression.",
+        features: [
+          "Luxury Apparel",
+          "Sustainable Fashion",
+          "Accessories",
+          "Footwear",
+          "Personal Care",
+        ],
         brands: ["StyleHouse", "EcoFashion", "LuxuryLine", "ModernClassics"],
-        images: ["👗", "👠", "👜", "⌚"]
-      }
+        images: ["👗", "👠", "👜", "⌚"],
+      },
     },
     {
       id: 3,
@@ -91,11 +111,18 @@ const CategoriesSection = () => {
       description: "Premium health and wellness solutions",
       image: "🏥",
       details: {
-        overview: "Health and wellness are at the core of our mission. Our partners in this space deliver innovative solutions that promote better living, from fitness equipment to nutritional supplements and medical devices.",
-        features: ["Fitness Equipment", "Nutrition Supplements", "Medical Devices", "Wellness Apps", "Recovery Tools"],
+        overview:
+          "Health and wellness are at the core of our mission. Our partners in this space deliver innovative solutions that promote better living, from fitness equipment to nutritional supplements and medical devices.",
+        features: [
+          "Fitness Equipment",
+          "Nutrition Supplements",
+          "Medical Devices",
+          "Wellness Apps",
+          "Recovery Tools",
+        ],
         brands: ["HealthTech", "WellnessFirst", "FitLife", "MedAdvance"],
-        images: ["💊", "🏃‍♂️", "🧘‍♀️", "📊"]
-      }
+        images: ["💊", "🏃‍♂️", "🧘‍♀️", "📊"],
+      },
     },
     {
       id: 4,
@@ -103,12 +130,19 @@ const CategoriesSection = () => {
       description: "Elegant home solutions and living essentials",
       image: "🏠",
       details: {
-        overview: "Transform your living space with our home and living partners. From smart home automation to elegant furniture and decor, we offer solutions that make your house a true home.",
-        features: ["Smart Home Systems", "Furniture Design", "Home Decor", "Kitchen Appliances", "Garden Solutions"],
+        overview:
+          "Transform your living space with our home and living partners. From smart home automation to elegant furniture and decor, we offer solutions that make your house a true home.",
+        features: [
+          "Smart Home Systems",
+          "Furniture Design",
+          "Home Decor",
+          "Kitchen Appliances",
+          "Garden Solutions",
+        ],
         brands: ["HomeDesign", "SmartLiving", "ElegantSpaces", "ModernHome"],
-        images: ["🛋️", "🍽️", "💡", "🌿"]
-      }
-    }
+        images: ["🛋️", "🍽️", "💡", "🌿"],
+      },
+    },
   ];
 
   return (
@@ -121,8 +155,8 @@ const CategoriesSection = () => {
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our diverse range of partner categories, each carefully curated 
-            to deliver exceptional quality and innovation.
+            Explore our diverse range of partner categories, each carefully
+            curated to deliver exceptional quality and innovation.
           </p>
         </div>
 
@@ -139,7 +173,9 @@ const CategoriesSection = () => {
               <div className="card-category-overlay" />
               <div className="card-category-content">
                 <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
-                <p className="text-white/90 mb-4 text-sm">{category.description}</p>
+                <p className="text-white/90 mb-4 text-sm">
+                  {category.description}
+                </p>
                 <div className="flex items-center text-accent">
                   <span className="text-sm font-medium">Explore</span>
                   <ArrowRight size={16} className="ml-2" />
@@ -152,7 +188,7 @@ const CategoriesSection = () => {
         {/* Category Details Modal */}
         {selectedCategory && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div 
+            <div
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setSelectedCategory(null)}
             />
@@ -171,7 +207,10 @@ const CategoriesSection = () => {
                   <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full">
                       {selectedCategory.details.images.map((image, index) => (
-                        <div key={index} className="embla__slide h-full">
+                        <div
+                          key={index}
+                          className="embla__slide h-full flex-[0_0_100%]"
+                        >
                           <div className="h-full flex items-center justify-center text-6xl md:text-9xl bg-gradient-to-br from-muted to-muted/50">
                             {image}
                           </div>
@@ -181,12 +220,18 @@ const CategoriesSection = () => {
                   </div>
 
                   {/* Vertical Dots Indicator - Horizontal on mobile */}
-                  <div className="absolute left-1/2 bottom-4 -translate-x-1/2 flex space-x-2 md:left-4 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 md:flex-col md:space-x-0 md:space-y-2">
+                  <div
+                    className="absolute left-1/2 bottom-4 -translate-x-1/2 flex space-x-2 
+                md:left-4 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 
+                md:flex-col md:space-x-0 md:space-y-2"
+                  >
                     {selectedCategory.details.images.map((_, index) => (
                       <button
                         key={index}
                         className={`w-2 h-2 rounded-full transition-colors ${
-                          index === currentImageIndex ? 'bg-primary' : 'bg-white/40'
+                          index === currentImageIndex
+                            ? "bg-primary"
+                            : "bg-white/40"
                         }`}
                         onClick={() => emblaApi?.scrollTo(index)}
                       />
@@ -203,7 +248,8 @@ const CategoriesSection = () => {
                         EST. 2020 / {selectedCategory.title.toUpperCase()}
                       </div>
                       <h2 className="text-3xl font-bold text-foreground">
-                        {selectedCategory.details.brands[0] || selectedCategory.title}
+                        {selectedCategory.details.brands[0] ||
+                          selectedCategory.title}
                       </h2>
                     </div>
 
@@ -216,27 +262,38 @@ const CategoriesSection = () => {
 
                     {/* Features */}
                     <div className="space-y-3">
-                      {selectedCategory.details.features.slice(0, 3).map((feature, index) => (
-                        <div key={index} className="text-muted-foreground">
-                          {feature}
-                        </div>
-                      ))}
+                      {selectedCategory.details.features
+                        .slice(0, 3)
+                        .map((feature, index) => (
+                          <div key={index} className="text-muted-foreground">
+                            {feature}
+                          </div>
+                        ))}
                     </div>
                   </div>
 
                   {/* Navigation */}
                   <div className="flex items-center justify-between pt-6 border-t border-border">
                     <button
-                      onClick={() => navigateToCategory('prev')}
+                      onClick={() => navigateToCategory("prev")}
                       className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
                     >
                       <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-foreground transition-colors">
                         <ChevronLeft size={16} />
                       </div>
                       <span className="text-sm font-medium">
-                        PREV: {categories[categories.findIndex(cat => cat.id === selectedCategory.id) === 0 
-                          ? categories.length - 1 
-                          : categories.findIndex(cat => cat.id === selectedCategory.id) - 1]?.title.split(' ')[0]}
+                        PREV:{" "}
+                        {
+                          categories[
+                            categories.findIndex(
+                              (cat) => cat.id === selectedCategory.id
+                            ) === 0
+                              ? categories.length - 1
+                              : categories.findIndex(
+                                  (cat) => cat.id === selectedCategory.id
+                                ) - 1
+                          ]?.title.split(" ")[0]
+                        }
                       </span>
                     </button>
 
@@ -245,22 +302,35 @@ const CategoriesSection = () => {
                         <div
                           key={index}
                           className={`w-2 h-2 rounded-full ${
-                            index === categories.findIndex(cat => cat.id === selectedCategory.id)
-                              ? 'bg-foreground'
-                              : 'bg-muted-foreground/30'
+                            index ===
+                            categories.findIndex(
+                              (cat) => cat.id === selectedCategory.id
+                            )
+                              ? "bg-foreground"
+                              : "bg-muted-foreground/30"
                           }`}
                         />
                       ))}
                     </div>
 
                     <button
-                      onClick={() => navigateToCategory('next')}
+                      onClick={() => navigateToCategory("next")}
                       className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
                     >
                       <span className="text-sm font-medium">
-                        NEXT: {categories[categories.findIndex(cat => cat.id === selectedCategory.id) === categories.length - 1 
-                          ? 0 
-                          : categories.findIndex(cat => cat.id === selectedCategory.id) + 1]?.title.split(' ')[0]}
+                        NEXT:{" "}
+                        {
+                          categories[
+                            categories.findIndex(
+                              (cat) => cat.id === selectedCategory.id
+                            ) ===
+                            categories.length - 1
+                              ? 0
+                              : categories.findIndex(
+                                  (cat) => cat.id === selectedCategory.id
+                                ) + 1
+                          ]?.title.split(" ")[0]
+                        }
                       </span>
                       <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-foreground transition-colors">
                         <ChevronRight size={16} />
