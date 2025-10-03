@@ -102,9 +102,9 @@ const HowWeWorkSection = () => {
                   ref={(el) => (stepsRef.current[index] = el)}
                   className="relative"
                 >
-                  <div className={`grid md:grid-cols-2 gap-8 items-center ${isLeft ? '' : 'md:grid-flow-dense'}`}>
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
                     {/* Icon Side */}
-                    <div className={`flex ${isLeft ? 'md:justify-end' : 'md:justify-start'} justify-center`}>
+                    <div className={`flex ${isLeft ? 'md:justify-end' : 'md:justify-start md:col-start-2'} justify-center`}>
                       <div 
                         className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
                           isActive 
