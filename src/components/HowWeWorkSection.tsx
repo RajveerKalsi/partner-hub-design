@@ -11,6 +11,12 @@ const HowWeWorkSection = () => {
   const [activeStep, setActiveStep] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollToContact = () => {
+    const element = document.querySelector('#contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const steps: {
     number: number;
@@ -227,9 +233,9 @@ const HowWeWorkSection = () => {
               Let us handle the complexity of fulfillment while you focus on
               growing your business.
             </p>
-            <a href="#contact" className="btn-hero inline-block">
+            <button onClick={scrollToContact} className="btn-hero inline-block cursor-pointer">
               Get Started Today
-            </a>
+            </button>
           </div>
         </div>
       </div>
