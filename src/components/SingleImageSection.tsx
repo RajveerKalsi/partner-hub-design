@@ -8,12 +8,13 @@ const SingleImageSection = () => {
           <div className="text-center mb-16">
             <div className="section-divider">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-                Excellence in Partnership
+              We Don’t Just Deliver Goods - We Deliver Growth
               </h2>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Every partnership we forge is built on trust, innovation, and a shared 
-              commitment to delivering exceptional value to our customers.
+              Our warehousing, fulfillment, and freight services are designed to give
+               you more than just logistics - they give you reliability, speed, and scalability. 
+               With every shipment we handle, our goal is simple: to help your business operate seamlessly today and grow stronger tomorrow.
             </p>
           </div>
 
@@ -37,11 +38,10 @@ const SingleImageSection = () => {
                 {/* Text Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
                   <h3 className="text-xl md:text-4xl font-bold text-white mb-4">
-                    Premium Brand Showcase
+                    Beyond Goods. Driving Growth.
                   </h3>
                   <p className="text-sm md:text-xl text-white max-w-2xl">
-                    Discover how our partnerships create exceptional value through 
-                    innovation, quality, and customer-centric solutions.
+                    At Houston Logistics, we go beyond moving goods - we move businesses forward with solutions built for growth.
                   </p>
                 </div>
               </div>
@@ -57,12 +57,11 @@ const SingleImageSection = () => {
           <div className="grid md:grid-cols-3 gap-8 mt-16">
             <div className="text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🎯</span>
+                <span className="text-2xl">🚚</span>
               </div>
-              <h4 className="text-xl font-semibold text-foreground mb-2">Targeted Solutions</h4>
+              <h4 className="text-xl font-semibold text-foreground mb-2">Fast & Reliable Shipping</h4>
               <p className="text-muted-foreground">
-                Carefully curated partnerships that address specific market needs 
-                and customer requirements.
+                Ensure timely deliveries across local and national routes with real-time tracking for every shipment.
               </p>
             </div>
 
@@ -70,21 +69,19 @@ const SingleImageSection = () => {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🚀</span>
               </div>
-              <h4 className="text-xl font-semibold text-foreground mb-2">Innovation Focus</h4>
+              <h4 className="text-xl font-semibold text-foreground mb-2">Comprehensive Freight Solutions</h4>
               <p className="text-muted-foreground">
-                Working with brands that push boundaries and drive innovation 
-                in their respective industries.
+                Handling everything from standard freight to oversized or specialized cargo with tailored logistics planning.
               </p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">💎</span>
+                <span className="text-2xl">↪️</span>
               </div>
-              <h4 className="text-xl font-semibold text-foreground mb-2">Premium Quality</h4>
+              <h4 className="text-xl font-semibold text-foreground mb-2">Reverse Logistics & Returns Management</h4>
               <p className="text-muted-foreground">
-                Every partnership is built on a foundation of quality, reliability, 
-                and exceptional customer experience.
+                Efficient returns handling, restocking, and quality control to streamline reverse supply chain processes.
               </p>
             </div>
           </div>
