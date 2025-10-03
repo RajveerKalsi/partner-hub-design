@@ -102,26 +102,9 @@ const HowWeWorkSection = () => {
                   ref={(el) => (stepsRef.current[index] = el)}
                   className="relative"
                 >
-                  <div className="relative md:grid md:grid-cols-2 gap-8">
-                    {/* Icon Side - Absolutely positioned to align with center */}
-                    <div className={`hidden md:flex ${isLeft ? 'justify-end' : 'justify-start col-start-2'} absolute top-1/2 -translate-y-1/2 ${isLeft ? 'left-0 right-1/2 pr-8' : 'left-1/2 right-0 pl-8'}`}>
-                      <div 
-                        className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
-                          isActive 
-                            ? 'bg-accent shadow-lg shadow-accent/50' 
-                            : 'bg-muted border-2 border-border'
-                        }`}
-                      >
-                        <IconComponent 
-                          className={`w-10 h-10 transition-colors duration-500 ${
-                            isActive ? 'text-accent-foreground' : 'text-muted-foreground'
-                          }`}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Mobile Icon - Only visible on mobile */}
-                    <div className="flex md:hidden justify-center mb-4">
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    {/* Icon - mobile only (in-flow) */}
+                    <div className={`flex justify-center ${isLeft ? 'md:justify-end' : 'md:justify-start md:col-start-2'} md:hidden`}>
                       <div 
                         className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
                           isActive 
@@ -158,6 +141,27 @@ const HowWeWorkSection = () => {
                           {step.description}
                         </p>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Icon - desktop absolute (aligned with center dot) */}
+                  <div 
+                    className={`hidden md:flex items-center justify-center absolute top-1/2 -translate-y-1/2 z-20 ${
+                      isLeft ? 'right-1/2 mr-8' : 'left-1/2 ml-8'
+                    }`}
+                  >
+                    <div 
+                      className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
+                        isActive 
+                          ? 'bg-accent shadow-lg shadow-accent/50' 
+                          : 'bg-muted border-2 border-border'
+                      }`}
+                    >
+                      <IconComponent 
+                        className={`w-10 h-10 transition-colors duration-500 ${
+                          isActive ? 'text-accent-foreground' : 'text-muted-foreground'
+                        }`}
+                      />
                     </div>
                   </div>
 
