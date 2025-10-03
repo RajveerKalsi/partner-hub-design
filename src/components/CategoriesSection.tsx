@@ -6,6 +6,20 @@ import eCommerceFulfillment from "@/assets/e-commerce-fulfillment.webp";
 import reverseLogistics from "@/assets/reverse-logistics.webp";
 import shippingFrieghtManagement from "@/assets/shipping-frieght-management.webp";
 import warehousing from "@/assets/warehousing.webp";
+import storage from "@/assets/Short-long-term-storage.webp";
+import palletizedBox from "@/assets/Palletized-boxed-custom storage.webp";
+import receivingImage from "@/assets/Receiving-loading.webp";
+import pickPackImage from "@/assets/Pick-pack-services.webp";
+import amazonFBAImage from "@/assets/AmazonFBA.webp";
+import ecommerceImage from "@/assets/ecommerce-integration.webp";
+import orderTrackingImage from "@/assets/Order-Tracking.webp";
+import dhlImage from "@/assets/DHL.webp";
+import containerShippingImage from "@/assets/Container-shipping-overseas.webp";
+import customClearanceImage from "@/assets/custom-clearance.webp";
+import ltlImage from "@/assets/LTL-FTL-Shipment.webp";
+import returnsImage from "@/assets/Returns-handling-restocking.webp";
+import QAImage from "@/assets/Quality-control-checks.webp";
+import RMAImage from "@/assets/RMA-processes.webp";
 
 interface Category {
   id: number;
@@ -87,7 +101,7 @@ const CategoriesSection = () => {
           "Pick & pack services",
         ],
         brands: ["Warehousing", "InnovateLab", "DigitalEdge", "SmartSolutions"],
-        images: [eCommerceFulfillment, reverseLogistics, shippingFrieghtManagement, warehousing],
+        images: [storage, palletizedBox, receivingImage, pickPackImage],
       },
     },
     {
@@ -104,7 +118,7 @@ const CategoriesSection = () => {
           "Real-time order processing & tracking",
         ],
         brands: ["E-Commerce Fulfillment", "EcoFashion", "LuxuryLine", "ModernClassics"],
-        images: ["👗", "👠", "👜", "⌚"],
+        images: [amazonFBAImage, ecommerceImage, orderTrackingImage],
       },
     },
     {
@@ -124,7 +138,7 @@ const CategoriesSection = () => {
           "Customs clearance & import/export consultancy",
         ],
         brands: ["Shipping & Freight Management", "WellnessFirst", "FitLife", "MedAdvance"],
-        images: ["💊", "🏃‍♂️", "🧘‍♀️", "📊"],
+        images: [dhlImage, ltlImage, containerShippingImage, customClearanceImage],
       },
     },
     {
@@ -141,7 +155,7 @@ const CategoriesSection = () => {
           "Accept/Reject and RMA processes",
         ],
         brands: ["Reverse Logistics", "SmartLiving", "ElegantSpaces", "ModernHome"],
-        images: ["🛋️", "🍽️", "💡", "🌿"],
+        images: [returnsImage, QAImage, RMAImage],
       },
     },
   ];

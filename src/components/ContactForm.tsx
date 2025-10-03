@@ -54,8 +54,7 @@ const ContactForm = () => {
               </h2>
             </div>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ready to explore partnership opportunities? We'd love to hear from you. 
-              Send us a message and let's start building something amazing together.
+            Have questions or ready to streamline your logistics? Our team at Houston Logistics is here to help.
             </p>
           </div>
 
@@ -67,8 +66,7 @@ const ContactForm = () => {
                   Let's Start a Conversation
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
-                  Whether you're a brand looking to expand your reach or a business 
-                  seeking premium products, we're here to help you succeed.
+                 Don’t wait to simplify your logistics. Reach out now and start a partnership built on speed, reliability, and efficiency.
                 </p>
               </div>
 
@@ -98,10 +96,10 @@ const ContactForm = () => {
                 <h4 className="font-semibold text-foreground mb-4">Partnership Benefits</h4>
                 <ul className="space-y-3">
                   {[
-                    "Access to premium brand network",
-                    "Dedicated account management",
-                    "Marketing and promotional support",
-                    "Performance analytics and insights"
+                    "Expert Team & Technology",
+                    "Reliable & On-Time Deliveries",
+                    "End-to-End Support",
+                    "Scalable & Flexible Services"
                   ].map((benefit, index) => (
                     <li key={index} className="flex items-center text-muted-foreground">
                       <div className="w-2 h-2 bg-accent rounded-full mr-3" />

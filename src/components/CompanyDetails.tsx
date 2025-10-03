@@ -4,14 +4,13 @@ import whatIs3pl from "@/assets/what-is-3pl.webp";
 const CompanyDetails = () => {
   const details = [
     {
-      title: "Our Mission",
+      title: "What is 3PL?",
       content:
-        "To bridge the gap between exceptional brands and discerning customers by fostering strategic partnerships that drive innovation, quality, and mutual success.",
+        "Third-Party Logistics (3PL) is a service where a company outsources its logistics and supply chain management to an external provider. This includes warehousing, transportation, inventory management, and even order fulfillment. 3PL providers act as an extension of a business, handling the complex logistics so companies can focus on their core operations.",
       points: [
-        "Curating premium brand partnerships",
-        "Ensuring quality and innovation standards",
-        "Delivering exceptional customer experiences",
-        "Building long-term strategic relationships",
+        "Cost Savings",
+        "Expertise & Efficiency",
+        "Scalability & Flexibility",
       ],
       image: whatIs3pl,
       imagePosition: "right",
@@ -19,12 +18,11 @@ const CompanyDetails = () => {
     {
       title: "Why Choose Us",
       content:
-        "With over a decade of experience in brand partnerships, we understand what it takes to create meaningful connections between brands and their target audiences.",
+        "Houston Logistics stands out by combining industry expertise with personalized service to deliver seamless logistics solutions. We prioritize reliability, speed, and transparency in every step of the supply chain. Our technology-driven approach ensures real-time tracking, efficient route planning, and proactive problem-solving. Partnering with us means gaining a logistics ally committed to your business growth and operational efficiency.",
       points: [
-        "Rigorous brand selection process",
-        "Proven track record of success",
-        "Dedicated support and service",
-        "Global network of premium partners",
+        "Reliable & On-Time Delivery",
+        "Customized Solutions",
+        "End-to-End Support",
       ],
       image: whyChooseUsImage,
       imagePosition: "left",
@@ -37,12 +35,12 @@ const CompanyDetails = () => {
         <div className="text-center mb-16">
           <div className="section-divider">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-              Company Details
+              Why Partner with Houston Logistics
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Learn more about our company, our mission, and what sets us apart in
-            the world of brand partnerships.
+            Houston Logistics takes the hassle out of moving goods, providing smart, 
+            reliable solutions for businesses of all sizes.
           </p>
         </div>
 
