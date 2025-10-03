@@ -18,7 +18,7 @@ const Navigation = () => {
     { name: "Home", href: "#home" },
     { name: "About Us", href: "#about" },
     { name: "Categories", href: "#categories" },
-    { name: "Products", href: "#products" },
+    // { name: "Products", href: "#products" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -55,7 +55,7 @@ const Navigation = () => {
         </div>
 
         {/* Desktop Nav Items */}
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-4 md:space-x-3 lg:space-x-8">
           {navItems.map((item) => (
             <button
               key={item.name}
