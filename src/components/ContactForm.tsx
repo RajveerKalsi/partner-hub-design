@@ -62,7 +62,7 @@ const ContactForm = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div className="space-y-8">
-              <div>
+              <div className='text-center lg:text-left'>
                 <h3 className="text-2xl font-semibold text-foreground mb-6">
                   Let's Start a Conversation
                 </h3>

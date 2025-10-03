@@ -7,7 +7,7 @@ const AboutSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <div className="space-y-8">
-            <div className="space-y-4">
+            <div className="space-y-4 text-center md:text-left">
               <div className="section-divider">
                 <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8">
                   About Us
@@ -17,7 +17,7 @@ const AboutSection = () => {
                 At Houston Logistics, we go beyond transportation — we deliver confidence.</p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 text-center md:text-left">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 As a trusted <b>3PL</b> partner, we specialize in warehousing, distribution, and end-to-end logistics solutions designed to help businesses grow. With a team driven by precision and innovation, we ensure every shipment is handled with care, speed, and reliability. Our mission is simple: to keep your business moving forward.”
               </p>

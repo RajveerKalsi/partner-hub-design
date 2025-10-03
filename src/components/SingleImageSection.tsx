@@ -20,7 +20,7 @@ const SingleImageSection = () => {
           {/* Video Section with Gradient Overlay */}
           <div className="relative">
             <div className="card-elevated p-0 overflow-hidden">
-              <div className="aspect-[21/9] relative">
+              <div className="aspect-[4/5] md:aspect-[21/10] relative">
                 {/* Video */}
                 <video
                   src={logisticVideo}
@@ -36,10 +36,10 @@ const SingleImageSection = () => {
 
                 {/* Text Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <h3 className="text-xl md:text-4xl font-bold text-white mb-4">
                     Premium Brand Showcase
                   </h3>
-                  <p className="text-lg md:text-xl text-white max-w-2xl">
+                  <p className="text-sm md:text-xl text-white max-w-2xl">
                     Discover how our partnerships create exceptional value through 
                     innovation, quality, and customer-centric solutions.
                   </p>

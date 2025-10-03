@@ -49,6 +49,7 @@ const PartnersSection = () => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
+    // ---- Mouse Events ----
     const mouseDown = (e: MouseEvent) => {
       isDragging.current = true;
       startX.current = e.pageX - scrollContainer.offsetLeft;
@@ -65,14 +66,37 @@ const PartnersSection = () => {
       if (!isDragging.current) return;
       e.preventDefault();
       const x = e.pageX - scrollContainer.offsetLeft;
-      const walk = (x - startX.current) * 1.5; // drag speed multiplier
+      const walk = (x - startX.current) * 1.5;
       scrollContainer.scrollLeft = scrollLeft.current - walk;
     };
 
+    // ---- Touch Events ----
+    const touchStart = (e: TouchEvent) => {
+      isDragging.current = true;
+      startX.current = e.touches[0].pageX - scrollContainer.offsetLeft;
+      scrollLeft.current = scrollContainer.scrollLeft;
+    };
+
+    const touchEnd = () => {
+      isDragging.current = false;
+    };
+
+    const touchMove = (e: TouchEvent) => {
+      if (!isDragging.current) return;
+      const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX.current) * 1.5;
+      scrollContainer.scrollLeft = scrollLeft.current - walk;
+    };
+
+    // Attach listeners
     scrollContainer.addEventListener("mousedown", mouseDown);
     scrollContainer.addEventListener("mouseleave", mouseLeaveOrUp);
     scrollContainer.addEventListener("mouseup", mouseLeaveOrUp);
     scrollContainer.addEventListener("mousemove", mouseMove);
+
+    scrollContainer.addEventListener("touchstart", touchStart);
+    scrollContainer.addEventListener("touchend", touchEnd);
+    scrollContainer.addEventListener("touchmove", touchMove);
 
     scrollContainer.style.cursor = "grab";
 
@@ -81,6 +105,10 @@ const PartnersSection = () => {
       scrollContainer.removeEventListener("mouseleave", mouseLeaveOrUp);
       scrollContainer.removeEventListener("mouseup", mouseLeaveOrUp);
       scrollContainer.removeEventListener("mousemove", mouseMove);
+
+      scrollContainer.removeEventListener("touchstart", touchStart);
+      scrollContainer.removeEventListener("touchend", touchEnd);
+      scrollContainer.removeEventListener("touchmove", touchMove);
     };
   }, []);
 
@@ -106,7 +134,7 @@ const PartnersSection = () => {
             className="flex space-x-8 overflow-x-hidden select-none"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {[...partners, ...partners].map((partner, index) => (
+            {[...Array(10)].flatMap(() => partners).map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
                 className="flex-shrink-0 card-elevated p-8 text-center group min-w-[250px]"
