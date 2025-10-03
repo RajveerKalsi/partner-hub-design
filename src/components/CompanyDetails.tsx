@@ -1,5 +1,6 @@
 import whyChooseUsImage from "@/assets/why-choose-us.webp";
 import whatIs3pl from "@/assets/what-is-3pl.webp";
+import aboutSection from "@/assets/about-us.webp";
 
 const CompanyDetails = () => {
   const details = [
@@ -26,6 +27,18 @@ const CompanyDetails = () => {
       ],
       image: whyChooseUsImage,
       imagePosition: "left",
+    },
+    {
+      title: "About Us",
+      content:
+        "At Houston Logistics, we go beyond transportation — we deliver confidence. As a trusted 3PL partner, we specialize in warehousing, distribution, and end-to-end logistics solutions designed to help businesses grow. With a team driven by precision and innovation, we ensure every shipment is handled with care, speed, and reliability. Our mission is simple: to keep your business moving forward.",
+      points: [
+        "Reliability & On-Time Delivery",
+        "Expert Team & Proven Experience",
+        "End-to-End Logistics Solutions",
+      ],
+      image: aboutSection,
+      imagePosition: "right",
     },
   ];
 
