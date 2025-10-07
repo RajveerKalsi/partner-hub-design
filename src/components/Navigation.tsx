@@ -38,6 +38,19 @@ const Navigation = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.querySelector("#home");
+        element?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false);
+  };
+
   return (
     <>
       {/* ====================== Desktop Nav ====================== */}
@@ -49,10 +62,7 @@ const Navigation = () => {
         {/* Logo inside container */}
         <div
           className="flex items-center cursor-pointer"
-          onClick={() => {
-            const element = document.querySelector("#home");
-            element?.scrollIntoView({ behavior: "smooth" });
-          }}
+          onClick={handleLogoClick}
         >
           <img
             src="/h-l.png"
@@ -82,24 +92,14 @@ const Navigation = () => {
         }`}
       >
         {/* Logo */}
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={() => {
-            const element = document.querySelector("#home");
-            element?.scrollIntoView({ behavior: "smooth" });
-          }}
-        >
-          <img
-            src="/h-l.png"
-            alt="Logo"
-            className="h-8 w-auto object-contain"
-          />
+        <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
+          <img src="/h-l.png" alt="Logo" className="h-8 w-auto object-contain" />
         </div>
 
         {/* Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-full border border-border border-foreground text-foreground hover:bg-card/80 transition-colors"
+          className="p-2 rounded-full border border-border text-foreground hover:bg-card/80 transition-colors"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
