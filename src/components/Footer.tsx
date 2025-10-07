@@ -1,5 +1,13 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,16 +16,16 @@ const Footer = () => {
 
   const footerLinks = {
     company: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Our Mission', href: '#company' },
-      { name: 'Careers', href: '#' },
-      { name: 'Press', href: '#' }
+      { name: "How We Work", href: "#how-we-work" },
+      { name: "Why Choose Us", href: "#why-choose-us" },
+      { name: "About Us", href: "#about-us" },
+      { name: "FAQs", href: "#faq" },
     ],
     services: [
-      { name: 'Brand Partnerships', href: '#categories' },
-      { name: 'Product Showcase', href: '#products' },
-      { name: 'Consulting', href: '#' },
-      { name: 'Support', href: '#contact' }
+      { name: "Warehousing", href: "#categories" },
+      { name: "E-Commerce Fulfillment", href: "#categories" },
+      { name: "Shipping & Freight Management", href: "#categories" },
+      { name: "Reverse Logistics", href: "#categories" },
     ],
     // resources: [
     //   { name: 'Blog', href: '#' },
@@ -28,26 +36,26 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#' },
-    { name: 'Twitter', icon: Twitter, href: '#' },
-    { name: 'LinkedIn', icon: Linkedin, href: '#' },
-    { name: 'Instagram', icon: Instagram, href: '#' }
+    { name: "Facebook", icon: Facebook, href: "#" },
+    { name: "Twitter", icon: Twitter, href: "#" },
+    { name: "LinkedIn", icon: Linkedin, href: "#" },
+    { name: "Instagram", icon: Instagram, href: "#" },
   ];
 
   const scrollToSection = (href: string) => {
-    if (href.startsWith('#')) {
-      if (location.pathname !== '/') {
-        navigate('/');
+    if (href.startsWith("#")) {
+      if (location.pathname !== "/") {
+        navigate("/");
         setTimeout(() => {
           const element = document.querySelector(href);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ behavior: "smooth" });
           }
         }, 100);
       } else {
         const element = document.querySelector(href);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }
     }
@@ -62,7 +70,7 @@ const Footer = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-4">Houston Logistics</h3>
               <p className="text-primary-foreground/80 leading-relaxed">
-                Connecting exceptional brands with discerning customers through 
+                Connecting exceptional brands with discerning customers through
                 strategic partnerships and innovative solutions.
               </p>
             </div>
@@ -70,15 +78,21 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-accent" />
-                <span className="text-primary-foreground/90">partnerships@logistics.com</span>
+                <span className="text-primary-foreground/90">
+                  partnerships@logistics.com
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-accent" />
-                <span className="text-primary-foreground/90">+1 (555) 123-4567</span>
+                <span className="text-primary-foreground/90">
+                  +1 (555) 123-4567
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={18} className="text-accent" />
-                <span className="text-primary-foreground/90">123 Business District, City</span>
+                <span className="text-primary-foreground/90">
+                  123 Business District, City
+                </span>
               </div>
             </div>
           </div>
@@ -139,7 +153,8 @@ const Footer = () => {
             <div className="mb-6">
               <h4 className="font-semibold mb-4 text-lg">Our Mission</h4>
               <p className="text-primary-foreground/80 text-sm mb-4">
-                We connect premium brands with discerning customers, delivering innovation, quality, and trust in every partnership.
+                We connect premium brands with discerning customers, delivering
+                innovation, quality, and trust in every partnership.
               </p>
               {/* <h4 className="font-semibold mb-4 text-lg">Stay Updated</h4>
               <p className="text-primary-foreground/80 text-sm mb-4">
@@ -186,13 +201,22 @@ const Footer = () => {
               © {currentYear} Houston Logistics. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <Link to="/privacy-policy" className="text-primary-foreground/80 hover:text-accent transition-colors">
+              <Link
+                to="/privacy-policy"
+                className="text-primary-foreground/80 hover:text-accent transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/terms-of-service" className="text-primary-foreground/80 hover:text-accent transition-colors">
+              <Link
+                to="/terms-of-service"
+                className="text-primary-foreground/80 hover:text-accent transition-colors"
+              >
                 Terms of Service
               </Link>
-              <Link to="/cookie-policy" className="text-primary-foreground/80 hover:text-accent transition-colors">
+              <Link
+                to="/cookie-policy"
+                className="text-primary-foreground/80 hover:text-accent transition-colors"
+              >
                 Cookie Policy
               </Link>
             </div>
