@@ -19,7 +19,7 @@ const Navigation = () => {
     { name: "How We Work", href: "#how-we-work" },
     { name: "Why Choose Us", href: "#why-choose-us" },
     { name: "About Us", href: "#about-us" },
-    { name: "FAQs", href: "#contact" },
+    { name: "FAQs", href: "#faq" },
     { name: "Contact Us", href: "#contact" },
   ];
 
@@ -42,21 +42,27 @@ const Navigation = () => {
     <>
       {/* ====================== Desktop Nav ====================== */}
       <nav
-        className={`hidden md:flex nav-floating transition-all space-x-8 duration-300 items-center justify-between mx-auto max-w-6xl px-6 ${
-          scrolled ? "bg-card/100" : "bg-card/50"
+        className={`hidden md:flex nav-floating transition-all space-x-8 duration-300 items-center justify-between mx-auto w-[900px] px-6 ${
+          scrolled ? "bg-card/900" : "bg-card/60"
         } backdrop-blur-sm border-b border-border`}
       >
         {/* Logo inside container */}
-        <div className="flex items-center">
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={() => {
+            const element = document.querySelector("#home");
+            element?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
           <img
             src="/h-l.png"
             alt="Logo"
-            className="h-8 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </div>
 
         {/* Desktop Nav Items */}
-        <div className="flex items-center space-x-4 text-[13px] md:space-x-3 lg:space-x-8">
+        <div className="flex items-center space-x-4 text-[16px] md:space-x-3 lg:space-x-8">
           {navItems.map((item) => (
             <button
               key={item.name}
@@ -71,7 +77,13 @@ const Navigation = () => {
 
       {/* ====================== Mobile Nav ====================== */}
       {/* Mobile Logo (separate, pinned left) */}
-      <div className="fixed top-5 left-4 z-50 md:hidden pointer-events-none">
+      <div
+        className="fixed top-5 left-4 z-50 bg-white/90 py-1 md:hidden cursor-pointer"
+        onClick={() => {
+          const element = document.querySelector("#home");
+          element?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
         <img src="/h-l.png" alt="Logo" className="h-8 w-auto object-contain" />
       </div>
 

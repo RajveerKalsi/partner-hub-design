@@ -198,7 +198,7 @@
   }
 
   .card-category {
-    @apply relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer;
+    @apply relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer;
   }
 
   .card-category-image {
