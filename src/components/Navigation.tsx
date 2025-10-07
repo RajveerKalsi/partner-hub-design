@@ -76,26 +76,34 @@ const Navigation = () => {
       </nav>
 
       {/* ====================== Mobile Nav ====================== */}
-      {/* Mobile Logo (separate, pinned left) */}
-      <div
-        className="fixed top-5 left-4 z-50 bg-white/90 py-1 md:hidden cursor-pointer"
-        onClick={() => {
-          const element = document.querySelector("#home");
-          element?.scrollIntoView({ behavior: "smooth" });
-        }}
+      <nav
+        className={`md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b border-border backdrop-blur-md transition-all duration-300 ${
+          scrolled ? "bg-card/90" : "bg-card/60"
+        }`}
       >
-        <img src="/h-l.png" alt="Logo" className="h-8 w-auto object-contain" />
-      </div>
+        {/* Logo */}
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={() => {
+            const element = document.querySelector("#home");
+            element?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          <img
+            src="/h-l.png"
+            alt="Logo"
+            className="h-8 w-auto object-contain"
+          />
+        </div>
 
-      {/* Mobile Hamburger (separate, pinned right with its own background) */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`md:hidden fixed top-4 right-4 z-50 p-2 rounded-full border border-border 
-    ${scrolled ? "bg-card/100" : "bg-card/50"} 
-    backdrop-blur-sm text-foreground hover:bg-card/90 transition-colors`}
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+        {/* Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 rounded-full border border-border border-foreground text-foreground hover:bg-card/80 transition-colors"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </nav>
 
       {/* Mobile Menu */}
       {isOpen && (
@@ -104,7 +112,7 @@ const Navigation = () => {
             className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed top-16 right-4 w-60 bg-card rounded-2xl border border-border shadow-2xl">
+          <div className="fixed top-[64px] right-4 w-60 bg-card rounded-2xl border border-border shadow-2xl">
             <div className="p-6 space-y-4">
               {navItems.map((item) => (
                 <button
