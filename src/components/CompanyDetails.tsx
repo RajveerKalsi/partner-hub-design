@@ -17,7 +17,7 @@ const CompanyDetails = () => {
       imagePosition: "right",
     },
     {
-      title: "Why Choose Us",
+      title: "Why Choose Us?",
       content:
         "Houston Logistics stands out by combining industry expertise with personalized service to deliver seamless logistics solutions. We prioritize reliability, speed, and transparency in every step of the supply chain. Our technology-driven approach ensures real-time tracking, efficient route planning, and proactive problem-solving. Partnering with us means gaining a logistics ally committed to your business growth and operational efficiency.",
       points: [
@@ -52,14 +52,15 @@ const CompanyDetails = () => {
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Houston Logistics takes the hassle out of moving goods, providing smart, 
-            reliable solutions for businesses of all sizes.
+            Houston Logistics takes the hassle out of moving goods, providing
+            smart, reliable solutions for businesses of all sizes.
           </p>
         </div>
 
         <div className="space-y-24">
           {details.map((detail, index) => (
             <div
+              id={detail.title.replace(/[^\w\s]/gi, "").replace(/\s+/g, "-").toLowerCase()} // e.g., "Why Choose Us?" -> "why-choose-us?"
               key={index}
               className={`grid lg:grid-cols-2 gap-16 items-center ${
                 detail.imagePosition === "left" ? "lg:grid-flow-col-dense" : ""
@@ -72,10 +73,10 @@ const CompanyDetails = () => {
                 }`}
               >
                 <div className="space-y-4">
-                  <h3 className="text-center text-3xl md:text-4xl font-bold text-foreground text-left">
+                  <h3 className="text-3xl md:text-4xl font-bold text-foreground text-left">
                     {detail.title}
                   </h3>
-                  <p className="text-lg text-center text-muted-foreground leading-relaxed md:text-left">
+                  <p className="text-lg text-muted-foreground leading-relaxed md:text-left">
                     {detail.content}
                   </p>
                 </div>
@@ -99,12 +100,12 @@ const CompanyDetails = () => {
 
               {/* Image */}
               <div
-                className={`relative ${
+                className={`relative order-first md:order-none ${
                   detail.imagePosition === "left" ? "lg:col-start-1" : ""
                 }`}
               >
                 <div className="card-elevated p-0 overflow-hidden">
-                  <div className="aspect-[4/3] bg-muted flex items-center justify-center">
+                  <div className="aspect-[5/3] bg-muted flex items-center justify-center">
                     {/* Only show image */}
                     <img
                       src={detail.image}

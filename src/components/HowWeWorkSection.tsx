@@ -12,11 +12,13 @@ const HowWeWorkSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
   const scrollToContact = () => {
-    const element = document.querySelector('#contact');
+    const element = document.querySelector("#contact");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const [ctaActive, setCtaActive] = useState(false);
 
   const steps: {
     number: number;
@@ -56,6 +58,25 @@ const HowWeWorkSection = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!ctaRef.current) return;
+
+      const rect = ctaRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Check if the card is roughly in the middle of the viewport
+      setCtaActive(
+        rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2
+      );
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
       if (!sectionRef.current) return;
 
       const sectionTop = sectionRef.current.offsetTop;
@@ -85,7 +106,11 @@ const HowWeWorkSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-muted/30 relative">
+    <section
+      id="how-we-work"
+      ref={sectionRef}
+      className="py-24 bg-background relative"
+    >
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
           <div className="section-divider">
@@ -101,7 +126,7 @@ const HowWeWorkSection = () => {
 
         <div className="max-w-6xl mx-auto relative">
           {/* Vertical Timeline Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 hidden md:block">
+          <div className="absolute left-1/2 top-[50px] md:top-[100px] bottom-[-96px] w-0.5 -translate-x-1/2 z-0">
             {/* Background line */}
             <div className="absolute inset-0 bg-border"></div>
             {/* Animated highlight line */}
@@ -114,7 +139,7 @@ const HowWeWorkSection = () => {
           </div>
 
           {/* Steps */}
-          <div className="space-y-32">
+          <div className="space-y-16">
             {steps.map((step, index) => {
               const isLeft = index % 2 === 0;
               const isActive = activeStep >= index;
@@ -126,7 +151,7 @@ const HowWeWorkSection = () => {
                   ref={(el) => (stepsRef.current[index] = el)}
                   className="relative"
                 >
-                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                  <div className="grid md:grid-cols-2 gap-16 items-center">
                     {/* Icon - mobile only (in-flow) */}
                     <div
                       className={`flex justify-center ${
@@ -177,7 +202,7 @@ const HowWeWorkSection = () => {
                             </h3>
                           </div>
                         </div>
-                        <p className="text-lg text-muted-foreground leading-relaxed ml-14">
+                        <p className="text-lg text-muted-foreground leading-relaxed ml-12">
                           {step.description}
                         </p>
                       </div>
@@ -191,14 +216,14 @@ const HowWeWorkSection = () => {
                     }`}
                   >
                     <div
-                      className={`w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      className={`w-28 h-28 rounded-full flex items-center justify-center transition-all duration-500 ${
                         isActive
                           ? "bg-accent shadow-lg shadow-accent/50"
                           : "bg-muted border-2 border-border"
                       }`}
                     >
                       <IconComponent
-                        className={`w-10 h-10 transition-colors duration-500 ${
+                        className={`w-14 h-14 transition-colors duration-500 ${
                           isActive
                             ? "text-accent-foreground"
                             : "text-muted-foreground"
@@ -224,19 +249,25 @@ const HowWeWorkSection = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-24">
-          <div className="card-elevated inline-block p-8">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Ready to Streamline Your Logistics?
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-xl">
-              Let us handle the complexity of fulfillment while you focus on
-              growing your business.
-            </p>
-            <button onClick={scrollToContact} className="btn-hero inline-block cursor-pointer">
-              Get Started Today
-            </button>
-          </div>
+        <div
+          ref={ctaRef}
+          className={`card-elevated text-center w-full max-w-3xl mx-auto mt-24 p-8 transition-all duration-500 ${
+            ctaActive ? "border-2 border-accent" : ""
+          }`}
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-4">
+            Ready to Streamline Your Logistics?
+          </h3>
+          <p className="text-muted-foreground mb-6">
+            Let us handle the complexity of fulfillment while you focus on
+            growing your business.
+          </p>
+          <button
+            onClick={scrollToContact}
+            className="btn-hero inline-block cursor-pointer"
+          >
+            Get Started Today
+          </button>
         </div>
       </div>
     </section>

@@ -15,11 +15,12 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Categories", href: "#categories" },
-    // { name: "Products", href: "#products" },
-    { name: "Contact", href: "#contact" },
+    { name: "Our Services", href: "#categories" },
+    { name: "How We Work", href: "#how-we-work" },
+    { name: "Why Choose Us", href: "#why-choose-us" },
+    { name: "About Us", href: "#about-us" },
+    { name: "FAQs", href: "#contact" },
+    { name: "Contact Us", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -55,7 +56,7 @@ const Navigation = () => {
         </div>
 
         {/* Desktop Nav Items */}
-        <div className="flex items-center space-x-4 md:space-x-3 lg:space-x-8">
+        <div className="flex items-center space-x-4 text-[13px] md:space-x-3 lg:space-x-8">
           {navItems.map((item) => (
             <button
               key={item.name}

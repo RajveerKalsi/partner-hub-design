@@ -117,14 +117,19 @@ const CategoriesSection = () => {
           "Integration with Amazon, Walmart, Shopify, Etsy, etc.",
           "Real-time order processing & tracking",
         ],
-        brands: ["E-Commerce Fulfillment", "EcoFashion", "LuxuryLine", "ModernClassics"],
+        brands: [
+          "E-Commerce Fulfillment",
+          "EcoFashion",
+          "LuxuryLine",
+          "ModernClassics",
+        ],
         images: [amazonFBAImage, ecommerceImage, orderTrackingImage],
       },
     },
     {
       id: 3,
       title: "Shipping & Freight Management",
-      description: "Moving your goods faster, safer, smarter.”",
+      description: "Moving goods faster, safer, smarter.",
       image: shippingFrieghtManagement,
       details: {
         overview:
@@ -137,8 +142,18 @@ const CategoriesSection = () => {
           "Container shipping overseas",
           "Customs clearance & import/export consultancy",
         ],
-        brands: ["Shipping & Freight Management", "WellnessFirst", "FitLife", "MedAdvance"],
-        images: [dhlImage, ltlImage, containerShippingImage, customClearanceImage],
+        brands: [
+          "Shipping & Freight Management",
+          "WellnessFirst",
+          "FitLife",
+          "MedAdvance",
+        ],
+        images: [
+          dhlImage,
+          ltlImage,
+          containerShippingImage,
+          customClearanceImage,
+        ],
       },
     },
     {
@@ -154,14 +169,19 @@ const CategoriesSection = () => {
           "Quality control checks",
           "Accept/Reject and RMA processes",
         ],
-        brands: ["Reverse Logistics", "SmartLiving", "ElegantSpaces", "ModernHome"],
+        brands: [
+          "Reverse Logistics",
+          "SmartLiving",
+          "ElegantSpaces",
+          "ModernHome",
+        ],
         images: [returnsImage, QAImage, RMAImage],
       },
     },
   ];
 
   return (
-    <section id="categories" className="py-24 bg-muted/30">
+    <section id="categories" className="py-24 background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="section-divider">
@@ -170,7 +190,8 @@ const CategoriesSection = () => {
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            End-to-end logistics made simple: from warehousing to reverse logistics - all handled with precision and speed.
+            End-to-end logistics made simple: from warehousing to reverse
+            logistics - all handled with precision and speed.
           </p>
         </div>
 
@@ -194,7 +215,7 @@ const CategoriesSection = () => {
                 <p className="text-white/90 mb-4 text-sm">
                   {category.description}
                 </p>
-                <div className="flex items-center text-accent">
+                <div className="flex items-center text-white/90 font-semibold group-hover:text-accent transition-colors">
                   <span className="text-sm font-medium">Explore</span>
                   <ArrowRight size={16} className="ml-2" />
                 </div>
@@ -214,7 +235,7 @@ const CategoriesSection = () => {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="absolute top-4 right-4 z-10 w-8 h-8 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-background transition-colors"
+                className="absolute top-4 right-4 z-10 w-8 h-8 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground border transition-colors hover:border-accent hover:text-accent"
               >
                 <X size={16} />
               </button>
@@ -252,7 +273,7 @@ const CategoriesSection = () => {
                         key={index}
                         className={`w-2 h-2 rounded-full transition-colors ${
                           index === currentImageIndex
-                            ? "bg-primary"
+                            ? "bg-accent"
                             : "bg-white/100"
                         }`}
                         onClick={() => emblaApi?.scrollTo(index)}
@@ -265,10 +286,10 @@ const CategoriesSection = () => {
                 <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col h-full overflow-hidden">
                   {/* Top: Header */}
                   <div className="flex-none space-y-2">
-                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                    <div className="text-sm font-medium text-accent uppercase tracking-wide">
                       EST. 2020 / {selectedCategory.title.toUpperCase()}
                     </div>
-                    <h2 className="text-3xl font-bold text-foreground">
+                    <h2 className="text-3xl font-bold">
                       {selectedCategory.details.brands[0] ||
                         selectedCategory.title}
                     </h2>
@@ -289,8 +310,12 @@ const CategoriesSection = () => {
                     <div className="space-y-3">
                       {selectedCategory.details.features.map(
                         (feature, index) => (
-                          <div key={index} className="text-muted-foreground">
-                            {feature}
+                          <div
+                            key={index}
+                            className="flex items-center space-x-3 text-muted-foreground"
+                          >
+                            <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
+                            <span>{feature}</span>
                           </div>
                         )
                       )}
@@ -301,13 +326,13 @@ const CategoriesSection = () => {
                   <div className="flex-none flex items-center justify-between pt-6 border-t border-border px-4 md:px-8">
                     <button
                       onClick={() => navigateToCategory("prev")}
-                      className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
+                      className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-foreground transition-colors">
+                      <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-accent transition-colors">
                         <ChevronLeft size={16} />
                       </div>
                       <span className="text-sm font-medium">
-                        PREV:{" "}
+                        {" "}
                         {
                           categories[
                             categories.findIndex(
@@ -331,7 +356,7 @@ const CategoriesSection = () => {
                             categories.findIndex(
                               (cat) => cat.id === selectedCategory.id
                             )
-                              ? "bg-foreground"
+                              ? "bg-accent"
                               : "bg-muted-foreground/30"
                           }`}
                         />
@@ -340,10 +365,10 @@ const CategoriesSection = () => {
 
                     <button
                       onClick={() => navigateToCategory("next")}
-                      className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors group"
+                      className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors group"
                     >
                       <span className="text-sm font-medium">
-                        NEXT:{" "}
+                        {" "}
                         {
                           categories[
                             categories.findIndex(
@@ -357,7 +382,7 @@ const CategoriesSection = () => {
                           ]?.title.split(" ")[0]
                         }
                       </span>
-                      <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-foreground transition-colors">
+                      <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-accent transition-colors">
                         <ChevronRight size={16} />
                       </div>
                     </button>

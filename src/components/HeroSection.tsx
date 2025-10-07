@@ -18,7 +18,7 @@ const HeroSection = () => {
           alt="Hero background" 
           className="w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-primary/60" />
       </div>
 
       {/* Content */}
@@ -26,7 +26,7 @@ const HeroSection = () => {
         <div className="fade-in-up">
           <h1 className="hero-title mb-6">
             Seamless Logistics, Built for Growth
-            <span className="block text-accent">Houston Logistics</span>
+            {/* <span className="block text-[#175CFF]">Houston Logistics</span> */}
           </h1>
           
           <p className="hero-subtitle mb-12 mx-auto">

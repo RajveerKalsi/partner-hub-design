@@ -53,7 +53,7 @@ const ContactForm = () => {
                 Get In Touch
               </h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-5xl mx-auto">
             Have questions or ready to streamline your logistics? Our team at Houston Logistics is here to help.
             </p>
           </div>

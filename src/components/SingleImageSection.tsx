@@ -2,7 +2,7 @@ import logisticVideo from "@/assets/logistics-video.webm";
 
 const SingleImageSection = () => {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-muted/30">
       <div className="container mx-auto px-6">
         <div className="max-w-full mx-auto">
           <div className="text-center mb-16">
@@ -11,7 +11,7 @@ const SingleImageSection = () => {
               We Don’t Just Deliver Goods - We Deliver Growth
               </h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-5xl mx-auto">
               Our warehousing, fulfillment, and freight services are designed to give
                you more than just logistics - they give you reliability, speed, and scalability. 
                With every shipment we handle, our goal is simple: to help your business operate seamlessly today and grow stronger tomorrow.
@@ -59,7 +59,7 @@ const SingleImageSection = () => {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🚚</span>
               </div>
-              <h4 className="text-xl font-semibold text-foreground mb-2">Fast & Reliable Shipping</h4>
+              <h4 className="text-xl font-bold text-foreground mb-2">Fast & Reliable Shipping</h4>
               <p className="text-muted-foreground">
                 Ensure timely deliveries across local and national routes with real-time tracking for every shipment.
               </p>
@@ -69,7 +69,7 @@ const SingleImageSection = () => {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🚀</span>
               </div>
-              <h4 className="text-xl font-semibold text-foreground mb-2">Comprehensive Freight Solutions</h4>
+              <h4 className="text-xl font-bold text-foreground mb-2">Comprehensive Freight Solutions</h4>
               <p className="text-muted-foreground">
                 Handling everything from standard freight to oversized or specialized cargo with tailored logistics planning.
               </p>
@@ -79,7 +79,7 @@ const SingleImageSection = () => {
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">↪️</span>
               </div>
-              <h4 className="text-xl font-semibold text-foreground mb-2">Reverse Logistics & Returns Management</h4>
+              <h4 className="text-xl font-bold text-foreground mb-2">Reverse Logistics & Returns Management</h4>
               <p className="text-muted-foreground">
                 Efficient returns handling, restocking, and quality control to streamline reverse supply chain processes.
               </p>
