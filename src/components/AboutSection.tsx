@@ -1,6 +1,4 @@
 import aboutSection from "@/assets/about-us.webp";
-import { ABOUT_STATS } from "@/constants/about.constants";
-import { AboutText } from "@/enums/about.enums";
 
 const AboutSection = () => {
   return (
@@ -16,12 +14,19 @@ const AboutSection = () => {
                 </h2>
               </div>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                At Houston Logistics, we go beyond transportation — we deliver confidence.</p>
+                At Houston Logistics, we go beyond transportation — we deliver
+                confidence.
+              </p>
             </div>
 
             <div className="space-y-6 text-center md:text-left">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                As a trusted <b>3PL</b> partner, we specialize in warehousing, distribution, and end-to-end logistics solutions designed to help businesses grow. With a team driven by precision and innovation, we ensure every shipment is handled with care, speed, and reliability. Our mission is simple: to keep your business moving forward.”
+                As a trusted <b>3PL</b> partner, we specialize in warehousing,
+                distribution, and end-to-end logistics solutions designed to
+                help businesses grow. With a team driven by precision and
+                innovation, we ensure every shipment is handled with care,
+                speed, and reliability. Our mission is simple: to keep your
+                business moving forward.”
               </p>
             </div>
 
