@@ -99,7 +99,7 @@ const Navigation = () => {
         {/* Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-full border border-border text-foreground hover:bg-card/80 transition-colors"
+          className="p-2 rounded-full text-foreground hover:bg-card/80 transition-colors"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
