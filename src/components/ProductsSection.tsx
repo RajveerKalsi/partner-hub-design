@@ -1,43 +1,17 @@
 import { useState, useMemo } from 'react';
 import { Star, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
-
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  rating: number;
-  reviews: number;
-  image: string;
-  price?: string;
-  brand?: string;
-}
+import { PRODUCTS, PRODUCT_CATEGORIES, ITEMS_PER_PAGE_OPTIONS } from '@/constants/product.constants';
+import { ProductText } from '@/enums/product.enums';
 
 const ProductsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
 
-  const categories = ['All', 'Technology', 'Fashion', 'Health', 'Home'];
-
-  const products: Product[] = [
-    { id: 1, name: "Smart Wireless Headphones", category: "Technology", rating: 4.8, reviews: 1205, image: "🎧" },
-    { id: 2, name: "Premium Leather Jacket", category: "Fashion", rating: 4.9, reviews: 856, image: "🧥" },
-    { id: 3, name: "Fitness Tracker Pro", category: "Health", rating: 4.7, reviews: 2340, image: "⌚" },
-    { id: 4, name: "Smart Home Hub", category: "Home", rating: 4.6, reviews: 1456, image: "🏠" },
-    { id: 5, name: "Ultra HD Monitor", category: "Technology", rating: 4.9, reviews: 892, image: "🖥️" },
-    { id: 6, name: "Designer Sunglasses", category: "Fashion", rating: 4.8, reviews: 1123, image: "🕶️" },
-    { id: 7, name: "Protein Supplement", category: "Health", rating: 4.5, reviews: 3456, image: "💊" },
-    { id: 8, name: "Smart Coffee Maker", category: "Home", rating: 4.7, reviews: 978, image: "☕" },
-    { id: 9, name: "Wireless Earbuds", category: "Technology", rating: 4.6, reviews: 2134, image: "🎵" },
-    { id: 10, name: "Luxury Watch", category: "Fashion", rating: 4.9, reviews: 567, image: "⌚" },
-    { id: 11, name: "Yoga Mat Pro", category: "Health", rating: 4.8, reviews: 1890, image: "🧘" },
-    { id: 12, name: "Smart Thermostat", category: "Home", rating: 4.7, reviews: 1234, image: "🌡️" },
-  ];
-
   const filteredProducts = useMemo(() => {
     return selectedCategory === 'All' 
-      ? products 
-      : products.filter(product => product.category === selectedCategory);
+      ? PRODUCTS 
+      : PRODUCTS.filter(product => product.category === selectedCategory);
   }, [selectedCategory]);
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -66,12 +40,11 @@ const ProductsSection = () => {
         <div className="text-center mb-16">
           <div className="section-divider">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-              Featured Products
+              {ProductText.SECTION_TITLE}
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover our carefully selected collection of premium products 
-            from our trusted brand partners.
+            {ProductText.SECTION_DESCRIPTION}
           </p>
         </div>
 
@@ -80,7 +53,7 @@ const ProductsSection = () => {
           <div className="flex items-center space-x-4">
             <Filter className="text-muted-foreground" size={20} />
             <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
+              {PRODUCT_CATEGORIES.map((category) => (
                 <button
                   key={category}
                   onClick={() => {
@@ -100,7 +73,7 @@ const ProductsSection = () => {
           </div>
 
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-muted-foreground">Items per page:</span>
+            <span className="text-sm text-muted-foreground">{ProductText.ITEMS_PER_PAGE_LABEL}</span>
             <select
               value={itemsPerPage}
               onChange={(e) => {
@@ -109,9 +82,9 @@ const ProductsSection = () => {
               }}
               className="px-3 py-1 bg-secondary text-secondary-foreground rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
             >
-              <option value={4}>4</option>
-              <option value={6}>6</option>
-              <option value={8}>8</option>
+              {ITEMS_PER_PAGE_OPTIONS.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
             </select>
           </div>
         </div>

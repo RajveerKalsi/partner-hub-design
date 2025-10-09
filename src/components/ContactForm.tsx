@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { Send, Mail, User, Briefcase, Building } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { PARTNERSHIP_BENEFITS, INITIAL_FORM_DATA } from '@/constants/contact.constants';
+import { ContactText } from '@/enums/contact.enums';
+import { ContactFormData } from '@/types/contact.types';
 
 const ContactForm = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    jobTitle: '',
-    email: '',
-    companyName: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState<ContactFormData>(INITIAL_FORM_DATA);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -29,17 +26,11 @@ const ContactForm = () => {
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     toast({
-      title: "Message Sent Successfully!",
-      description: "We'll get back to you within 24 hours.",
+      title: ContactText.SUCCESS_TOAST_TITLE,
+      description: ContactText.SUCCESS_TOAST_DESCRIPTION,
     });
 
-    setFormData({
-      name: '',
-      jobTitle: '',
-      email: '',
-      companyName: '',
-      message: ''
-    });
+    setFormData(INITIAL_FORM_DATA);
     setIsSubmitting(false);
   };
 
@@ -50,11 +41,11 @@ const ContactForm = () => {
           <div className="text-center mb-16">
             <div className="section-divider">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-                Get In Touch
+                {ContactText.SECTION_TITLE}
               </h2>
             </div>
             <p className="text-xl text-muted-foreground max-w-5xl mx-auto">
-            Have questions or ready to streamline your logistics? Our team at Houston Logistics is here to help.
+              {ContactText.SECTION_DESCRIPTION}
             </p>
           </div>
 
@@ -76,8 +67,8 @@ const ContactForm = () => {
                     <Mail className="text-accent" size={20} />
                   </div>
                   <div>
-                    <div className="font-medium text-foreground">Email Us</div>
-                    <div className="text-muted-foreground">partnerships@logistics.com</div>
+                    <div className="font-medium text-foreground">{ContactText.EMAIL_LABEL}</div>
+                    <div className="text-muted-foreground">{ContactText.EMAIL_VALUE}</div>
                   </div>
                 </div>
 
@@ -86,21 +77,16 @@ const ContactForm = () => {
                     <Building className="text-accent" size={20} />
                   </div>
                   <div>
-                    <div className="font-medium text-foreground">Visit Our Office</div>
-                    <div className="text-muted-foreground">123 Business District, City</div>
+                    <div className="font-medium text-foreground">{ContactText.OFFICE_LABEL}</div>
+                    <div className="text-muted-foreground">{ContactText.OFFICE_VALUE}</div>
                   </div>
                 </div>
               </div>
 
               <div className="card-elevated p-6">
-                <h4 className="font-semibold text-foreground mb-4">Partnership Benefits</h4>
+                <h4 className="font-semibold text-foreground mb-4">{ContactText.BENEFITS_TITLE}</h4>
                 <ul className="space-y-3">
-                  {[
-                    "Expert Team & Technology",
-                    "Reliable & On-Time Deliveries",
-                    "End-to-End Support",
-                    "Scalable & Flexible Services"
-                  ].map((benefit, index) => (
+                  {PARTNERSHIP_BENEFITS.map((benefit, index) => (
                     <li key={index} className="flex items-center text-muted-foreground">
                       <div className="w-2 h-2 bg-accent rounded-full mr-3" />
                       {benefit}
@@ -116,7 +102,7 @@ const ContactForm = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
+                      {ContactText.FORM_NAME_LABEL}
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
@@ -128,14 +114,14 @@ const ContactForm = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                        placeholder="Enter your full name"
+                        placeholder={ContactText.FORM_NAME_PLACEHOLDER}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="jobTitle" className="block text-sm font-medium text-foreground mb-2">
-                      Job Title *
+                      {ContactText.FORM_JOB_LABEL}
                     </label>
                     <div className="relative">
                       <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
@@ -147,7 +133,7 @@ const ContactForm = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                        placeholder="Enter your job title"
+                        placeholder={ContactText.FORM_JOB_PLACEHOLDER}
                       />
                     </div>
                   </div>
@@ -155,7 +141,7 @@ const ContactForm = () => {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email Address *
+                    {ContactText.FORM_EMAIL_LABEL}
                   </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
@@ -167,14 +153,14 @@ const ContactForm = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                      placeholder="Enter your email address"
+                      placeholder={ContactText.FORM_EMAIL_PLACEHOLDER}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="companyName" className="block text-sm font-medium text-foreground mb-2">
-                    Company Name *
+                    {ContactText.FORM_COMPANY_LABEL}
                   </label>
                   <div className="relative">
                     <Building className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
@@ -186,14 +172,14 @@ const ContactForm = () => {
                       onChange={handleInputChange}
                       required
                       className="w-full pl-10 pr-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                      placeholder="Enter your company name"
+                      placeholder={ContactText.FORM_COMPANY_PLACEHOLDER}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Message *
+                    {ContactText.FORM_MESSAGE_LABEL}
                   </label>
                   <textarea
                     id="message"
@@ -203,7 +189,7 @@ const ContactForm = () => {
                     required
                     rows={6}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
-                    placeholder="Tell us about your partnership interests and goals..."
+                    placeholder={ContactText.FORM_MESSAGE_PLACEHOLDER}
                   />
                 </div>
 
@@ -215,12 +201,12 @@ const ContactForm = () => {
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin w-5 h-5 border-2 border-accent-foreground border-t-transparent rounded-full" />
-                      <span>Sending...</span>
+                      <span>{ContactText.FORM_SUBMITTING}</span>
                     </>
                   ) : (
                     <>
                       <Send size={18} />
-                      <span>Send Message</span>
+                      <span>{ContactText.FORM_SUBMIT_BUTTON}</span>
                     </>
                   )}
                 </button>

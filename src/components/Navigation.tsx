@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { NAV_ITEMS } from "@/constants/navigation.constants";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,15 +14,6 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navItems = [
-    { name: "Our Services", href: "#categories" },
-    { name: "How We Work", href: "#how-we-work" },
-    { name: "Why Choose Us", href: "#why-choose-us" },
-    { name: "About Us", href: "#about-us" },
-    { name: "FAQs", href: "#faq" },
-    { name: "Contact Us", href: "#contact" },
-  ];
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
@@ -73,7 +65,7 @@ const Navigation = () => {
 
         {/* Desktop Nav Items */}
         <div className="flex items-center space-x-4 text-[16px] md:space-x-3 lg:space-x-8">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <button
               key={item.name}
               onClick={() => scrollToSection(item.href)}
@@ -114,7 +106,7 @@ const Navigation = () => {
           />
           <div className="fixed top-[64px] right-4 w-60 bg-card rounded-2xl border border-border shadow-2xl">
             <div className="p-6 space-y-4">
-              {navItems.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}

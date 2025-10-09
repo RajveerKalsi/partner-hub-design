@@ -1,25 +1,12 @@
 import { useEffect, useRef } from "react";
+import { PARTNERS, PARTNER_STATS } from "@/constants/partner.constants";
+import { PartnerText } from "@/enums/partner.enums";
 
 const PartnersSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-
-  const partners = [
-    { name: "TechCorp", logo: "🔧", industry: "Technology" },
-    { name: "StyleHouse", logo: "👔", industry: "Fashion" },
-    { name: "HealthTech", logo: "🏥", industry: "Healthcare" },
-    { name: "SmartLiving", logo: "🏠", industry: "Home & Living" },
-    { name: "InnovateLab", logo: "💡", industry: "Innovation" },
-    { name: "EcoFashion", logo: "🌿", industry: "Sustainable Fashion" },
-    { name: "LuxuryLine", logo: "💎", industry: "Luxury Goods" },
-    { name: "FitLife", logo: "💪", industry: "Fitness" },
-    { name: "ModernHome", logo: "🏡", industry: "Home Design" },
-    { name: "WellnessFirst", logo: "🧘", industry: "Wellness" },
-    { name: "DigitalEdge", logo: "📱", industry: "Digital Solutions" },
-    { name: "ElegantSpaces", logo: "✨", industry: "Interior Design" },
-  ];
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -118,12 +105,11 @@ const PartnersSection = () => {
         <div className="text-center mb-16">
           <div className="section-divider">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-              Our Partners
+              {PartnerText.SECTION_TITLE}
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We're proud to work with industry-leading brands that share our
-            commitment to excellence and innovation.
+            {PartnerText.SECTION_DESCRIPTION}
           </p>
         </div>
 
@@ -134,7 +120,7 @@ const PartnersSection = () => {
             className="flex space-x-8 overflow-x-hidden select-none"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {[...Array(10)].flatMap(() => partners).map((partner, index) => (
+            {[...Array(10)].flatMap(() => PARTNERS).map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
                 className="flex-shrink-0 card-elevated p-8 text-center group min-w-[250px]"
@@ -159,22 +145,12 @@ const PartnersSection = () => {
 
         {/* Partner Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-2">50+</div>
-            <div className="text-muted-foreground">Global Partners</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-2">15</div>
-            <div className="text-muted-foreground">Industries</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-2">95%</div>
-            <div className="text-muted-foreground">Success Rate</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-2">24/7</div>
-            <div className="text-muted-foreground">Support</div>
-          </div>
+          {PARTNER_STATS.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-3xl font-bold text-accent mb-2">{stat.value}</div>
+              <div className="text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
