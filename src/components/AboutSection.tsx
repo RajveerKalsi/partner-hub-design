@@ -1,4 +1,6 @@
 import aboutSection from "@/assets/about-us.webp";
+import { ABOUT_STATS } from "@/constants/about.constants";
+import { AboutText } from "@/enums/about.enums";
 
 const AboutSection = () => {
   return (

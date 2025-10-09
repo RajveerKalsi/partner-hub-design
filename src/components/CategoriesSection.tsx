@@ -2,37 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import eCommerceFulfillment from "@/assets/e-commerce-fulfillment.webp";
-import reverseLogistics from "@/assets/reverse-logistics.webp";
-import shippingFrieghtManagement from "@/assets/shipping-frieght-management.webp";
-import warehousing from "@/assets/warehousing.webp";
-import storage from "@/assets/Short-long-term-storage.webp";
-import palletizedBox from "@/assets/Palletized-boxed-custom storage.webp";
-import receivingImage from "@/assets/Receiving-loading.webp";
-import pickPackImage from "@/assets/Pick-pack-services.webp";
-import amazonFBAImage from "@/assets/AmazonFBA.webp";
-import ecommerceImage from "@/assets/ecommerce-integration.webp";
-import orderTrackingImage from "@/assets/Order-Tracking.webp";
-import dhlImage from "@/assets/DHL.webp";
-import containerShippingImage from "@/assets/Container-shipping-overseas.webp";
-import customClearanceImage from "@/assets/custom-clearance.webp";
-import ltlImage from "@/assets/LTL-FTL-Shipment.webp";
-import returnsImage from "@/assets/Returns-handling-restocking.webp";
-import QAImage from "@/assets/Quality-control-checks.webp";
-import RMAImage from "@/assets/RMA-processes.webp";
-
-interface Category {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  details: {
-    overview: string;
-    features: string[];
-    brands: string[];
-    images: string[];
-  };
-}
+import { CATEGORIES } from "@/constants/category.constants";
+import { CategoryText } from "@/enums/category.enums";
+import { Category } from "@/types/category.types";
 
 const CategoriesSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
@@ -47,18 +19,18 @@ const CategoriesSection = () => {
   const navigateToCategory = (direction: "prev" | "next") => {
     if (!selectedCategory) return;
 
-    const currentIndex = categories.findIndex(
+    const currentIndex = CATEGORIES.findIndex(
       (cat) => cat.id === selectedCategory.id
     );
     let newIndex;
 
     if (direction === "prev") {
-      newIndex = currentIndex === 0 ? categories.length - 1 : currentIndex - 1;
+      newIndex = currentIndex === 0 ? CATEGORIES.length - 1 : currentIndex - 1;
     } else {
-      newIndex = currentIndex === categories.length - 1 ? 0 : currentIndex + 1;
+      newIndex = currentIndex === CATEGORIES.length - 1 ? 0 : currentIndex + 1;
     }
 
-    setSelectedCategory(categories[newIndex]);
+    setSelectedCategory(CATEGORIES[newIndex]);
     setCurrentImageIndex(0);
   };
 
@@ -84,119 +56,22 @@ const CategoriesSection = () => {
     }
   }, [selectedCategory]);
 
-  const categories: Category[] = [
-    {
-      id: 1,
-      title: "Warehousing",
-      description: "Organized inventory, hassle-free.",
-      image: eCommerceFulfillment,
-      details: {
-        overview:
-          "At Houston Logistics, our warehousing solutions combine security, efficiency, and precision to keep your inventory organized and ready to move. Every product is carefully tracked and managed to minimize delays and ensure seamless operations. With our hassle-free approach, you can focus on growing your business while we handle storage with expertise and reliability.",
-        features: [
-          "Short & long-term storage",
-          "Palletized, boxed, or custom storage",
-          "Receiving & loading",
-          "Package handling (palletizing, packaging)",
-          "Pick & pack services",
-        ],
-        brands: ["Warehousing", "InnovateLab", "DigitalEdge", "SmartSolutions"],
-        images: [storage, palletizedBox, receivingImage, pickPackImage],
-      },
-    },
-    {
-      id: 2,
-      title: "E-Commerce Fulfillment",
-      description: "From cart to doorstep, we handle it all.",
-      image: reverseLogistics,
-      details: {
-        overview:
-          "Streamlines your e-commerce operations with fast and accurate fulfillment, including Amazon FBA/FBM prep. Our platform integrates seamlessly with Amazon, Walmart, Shopify, Etsy, and more, so all your orders are managed in one place. With real-time order processing and tracking, we ensure every customer receives their purchase quickly and reliably.",
-        features: [
-          "Amazon FBA / FBM prep & fulfillment",
-          "Integration with Amazon, Walmart, Shopify, Etsy, etc.",
-          "Real-time order processing & tracking",
-        ],
-        brands: [
-          "E-Commerce Fulfillment",
-          "EcoFashion",
-          "LuxuryLine",
-          "ModernClassics",
-        ],
-        images: [amazonFBAImage, ecommerceImage, orderTrackingImage],
-      },
-    },
-    {
-      id: 3,
-      title: "Shipping & Freight Management",
-      description: "Moving goods faster, safer, smarter.",
-      image: shippingFrieghtManagement,
-      details: {
-        overview:
-          "Houston Logistics offers comprehensive shipping and freight solutions, partnering with USPS, UPS, FedEx, DHL, and more to handle domestic and international deliveries. From LTL/FTL shipments and last-mile delivery to drayage and overseas container shipping, we ensure your goods move efficiently at every step. Our expert customs clearance and import/export consultancy simplify cross-border logistics, so your business can expand without hassle.",
-        features: [
-          "Partnerships with USPS, UPS, FedEx, DHL",
-          "Domestic & international shipping",
-          "LTL / FTL freight shipments",
-          "Drayage shipments (port → warehouse)",
-          "Container shipping overseas",
-          "Customs clearance & import/export consultancy",
-        ],
-        brands: [
-          "Shipping & Freight Management",
-          "WellnessFirst",
-          "FitLife",
-          "MedAdvance",
-        ],
-        images: [
-          dhlImage,
-          ltlImage,
-          containerShippingImage,
-          customClearanceImage,
-        ],
-      },
-    },
-    {
-      id: 4,
-      title: "Reverse Logistics",
-      description: "Returns and restocking made simple.",
-      image: warehousing,
-      details: {
-        overview:
-          "Simplifies reverse logistics with efficient returns handling and restocking. Our quality control checks ensure every product meets your standards before re-entering inventory. From accept/reject decisions to RMA management, we make returns seamless and hassle-free for your business.",
-        features: [
-          "Returns handling & restocking",
-          "Quality control checks",
-          "Accept/Reject and RMA processes",
-        ],
-        brands: [
-          "Reverse Logistics",
-          "SmartLiving",
-          "ElegantSpaces",
-          "ModernHome",
-        ],
-        images: [returnsImage, QAImage, RMAImage],
-      },
-    },
-  ];
-
   return (
     <section id="categories" className="py-24 background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="section-divider">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-              Our Services
+              {CategoryText.SECTION_TITLE}
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            End-to-end logistics made simple: from warehousing to reverse
-            logistics - all handled with precision and speed.
+            {CategoryText.SECTION_DESCRIPTION}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 stagger-children">
-          {categories.map((category) => (
+          {CATEGORIES.map((category) => (
             <div
               key={category.id}
               className="card-category group"
@@ -216,7 +91,7 @@ const CategoriesSection = () => {
                   {category.description}
                 </p>
                 <div className="flex items-center text-white/90 font-semibold group-hover:text-accent transition-colors">
-                  <span className="text-sm font-medium">Explore</span>
+                  <span className="text-sm font-medium">{CategoryText.EXPLORE_BUTTON}</span>
                   <ArrowRight size={16} className="ml-2" />
                 </div>
               </div>
@@ -287,7 +162,7 @@ const CategoriesSection = () => {
                   {/* Top: Header */}
                   <div className="flex-none space-y-2">
                     <div className="text-sm font-medium text-accent uppercase tracking-wide">
-                      EST. 2020 / {selectedCategory.title.toUpperCase()}
+                      {CategoryText.EST_PREFIX} {selectedCategory.title.toUpperCase()}
                     </div>
                     <h2 className="text-3xl font-bold">
                       {selectedCategory.details.brands[0] ||
@@ -334,12 +209,12 @@ const CategoriesSection = () => {
                       <span className="text-sm font-medium">
                         {" "}
                         {
-                          categories[
-                            categories.findIndex(
+                          CATEGORIES[
+                            CATEGORIES.findIndex(
                               (cat) => cat.id === selectedCategory.id
                             ) === 0
-                              ? categories.length - 1
-                              : categories.findIndex(
+                              ? CATEGORIES.length - 1
+                              : CATEGORIES.findIndex(
                                   (cat) => cat.id === selectedCategory.id
                                 ) - 1
                           ]?.title.split(" ")[0]
@@ -348,12 +223,12 @@ const CategoriesSection = () => {
                     </button>
 
                     <div className="flex space-x-1">
-                      {categories.map((_, index) => (
+                      {CATEGORIES.map((_, index) => (
                         <div
                           key={index}
                           className={`w-2 h-2 rounded-full ${
                             index ===
-                            categories.findIndex(
+                            CATEGORIES.findIndex(
                               (cat) => cat.id === selectedCategory.id
                             )
                               ? "bg-accent"
@@ -370,13 +245,13 @@ const CategoriesSection = () => {
                       <span className="text-sm font-medium">
                         {" "}
                         {
-                          categories[
-                            categories.findIndex(
+                          CATEGORIES[
+                            CATEGORIES.findIndex(
                               (cat) => cat.id === selectedCategory.id
                             ) ===
-                            categories.length - 1
+                            CATEGORIES.length - 1
                               ? 0
-                              : categories.findIndex(
+                              : CATEGORIES.findIndex(
                                   (cat) => cat.id === selectedCategory.id
                                 ) + 1
                           ]?.title.split(" ")[0]

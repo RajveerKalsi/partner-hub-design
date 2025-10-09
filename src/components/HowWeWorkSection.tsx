@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  Package,
-  Warehouse,
-  Truck,
-  CheckCircle,
-  LucideIcon,
-} from "lucide-react";
+import { WORK_STEPS } from "@/constants/howWeWork.constants";
+import { HowWeWorkText } from "@/enums/howWeWork.enums";
 
 const HowWeWorkSection = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -19,42 +14,6 @@ const HowWeWorkSection = () => {
   };
   const ctaRef = useRef<HTMLDivElement>(null);
   const [ctaActive, setCtaActive] = useState(false);
-
-  const steps: {
-    number: number;
-    title: string;
-    description: string;
-    icon: LucideIcon;
-  }[] = [
-    {
-      number: 1,
-      title: "Order Placement",
-      description:
-        "Customer places order through your platform. We receive instant notification and begin processing immediately.",
-      icon: Package,
-    },
-    {
-      number: 2,
-      title: "Warehouse Processing",
-      description:
-        "Our team picks, packs, and quality-checks your products with precision and care in our state-of-the-art facilities.",
-      icon: Warehouse,
-    },
-    {
-      number: 3,
-      title: "Shipping & Tracking",
-      description:
-        "Products are dispatched with full tracking capabilities. Real-time updates keep you and your customers informed.",
-      icon: Truck,
-    },
-    {
-      number: 4,
-      title: "Delivery Confirmation",
-      description:
-        "Successful delivery with confirmation. Your customers receive their orders on time, every time.",
-      icon: CheckCircle,
-    },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,12 +74,11 @@ const HowWeWorkSection = () => {
         <div className="text-center mb-20">
           <div className="section-divider">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground pt-8 mb-6">
-              How We Work
+              {HowWeWorkText.SECTION_TITLE}
             </h2>
           </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our streamlined process ensures your products reach customers
-            efficiently and reliably, from order to delivery.
+            {HowWeWorkText.SECTION_DESCRIPTION}
           </p>
         </div>
 
@@ -133,14 +91,14 @@ const HowWeWorkSection = () => {
             <div
               className="absolute top-0 left-0 right-0 bg-accent transition-all duration-500 ease-out"
               style={{
-                height: `${((activeStep + 1) / steps.length) * 100}%`,
+                height: `${((activeStep + 1) / WORK_STEPS.length) * 100}%`,
               }}
             ></div>
           </div>
 
           {/* Steps */}
           <div className="space-y-16">
-            {steps.map((step, index) => {
+            {WORK_STEPS.map((step, index) => {
               const isLeft = index % 2 === 0;
               const isActive = activeStep >= index;
               const IconComponent = step.icon;
@@ -256,17 +214,16 @@ const HowWeWorkSection = () => {
           }`}
         >
           <h3 className="text-2xl font-bold text-foreground mb-4">
-            Ready to Streamline Your Logistics?
+            {HowWeWorkText.CTA_TITLE}
           </h3>
           <p className="text-muted-foreground mb-6">
-            Let us handle the complexity of fulfillment while you focus on
-            growing your business.
+            {HowWeWorkText.CTA_DESCRIPTION}
           </p>
           <button
             onClick={scrollToContact}
             className="btn-hero inline-block cursor-pointer"
           >
-            Get Started Today
+            {HowWeWorkText.CTA_BUTTON}
           </button>
         </div>
       </div>

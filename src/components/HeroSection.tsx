@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import heroBackground from '@/assets/hero-bg.webp';
+import { HeroText } from '@/enums/hero.enums';
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -25,20 +26,18 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="fade-in-up">
           <h1 className="hero-title mb-6">
-            Seamless Logistics, Built for Growth
-            {/* <span className="block text-[#175CFF]">Houston Logistics</span> */}
+            {HeroText.TITLE}
           </h1>
           
           <p className="hero-subtitle mb-12 mx-auto">
-            3PL Warehousing | E-commerce Fulifillment | Shipping & Freight Management | Reverse Logistics
-           {/* Smart, reliable logistics built for modern businesses. Our team ensures every shipment moves with speed and precision. */}
+            {HeroText.SUBTITLE}
           </p>
           
           <button 
             onClick={scrollToContact}
             className="btn-hero mb-16"
           >
-            Get In Touch
+            {HeroText.CTA_BUTTON}
           </button>
         </div>
       </div>
