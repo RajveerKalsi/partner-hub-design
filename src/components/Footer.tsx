@@ -1,11 +1,8 @@
+import { FOOTER_NAV_ITEMS_COMPANY, FOOTER_NAV_ITEMS_SERVICES, SOCIAL_LINKS } from "@/constants/footer.constants";
 import {
   Mail,
   Phone,
-  MapPin,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
+  MapPin
 } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
@@ -13,34 +10,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const footerLinks = {
-    company: [
-      { name: "How We Work", href: "#how-we-work" },
-      { name: "Why Choose Us", href: "#why-choose-us" },
-      { name: "About Us", href: "#about-us" },
-      { name: "FAQs", href: "#faq" },
-    ],
-    services: [
-      { name: "Warehousing", href: "#categories" },
-      { name: "E-Commerce Fulfillment", href: "#categories" },
-      { name: "Shipping & Freight Management", href: "#categories" },
-      { name: "Reverse Logistics", href: "#categories" },
-    ],
-    // resources: [
-    //   { name: 'Blog', href: '#' },
-    //   { name: 'Case Studies', href: '#' },
-    //   { name: 'Documentation', href: '#' },
-    //   { name: 'Help Center', href: '#' }
-    // ]
-  };
-
-  const socialLinks = [
-    { name: "Facebook", icon: Facebook, href: "#" },
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" },
-    { name: "Instagram", icon: Instagram, href: "#" },
-  ];
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
@@ -102,7 +71,7 @@ const Footer = () => {
             <div>
               <h4 className="font-semibold mb-4 text-lg">Company</h4>
               <ul className="space-y-3">
-                {footerLinks.company.map((link) => (
+                {FOOTER_NAV_ITEMS_COMPANY.map((link) => (
                   <li key={link.name}>
                     <button
                       onClick={() => scrollToSection(link.href)}
@@ -118,7 +87,7 @@ const Footer = () => {
             <div>
               <h4 className="font-semibold mb-4 text-lg">Services</h4>
               <ul className="space-y-3">
-                {footerLinks.services.map((link) => (
+                {FOOTER_NAV_ITEMS_SERVICES.map((link) => (
                   <li key={link.name}>
                     <button
                       onClick={() => scrollToSection(link.href)}
@@ -176,7 +145,7 @@ const Footer = () => {
             <div>
               <h4 className="font-semibold mb-4 text-lg">Follow Us</h4>
               <div className="flex space-x-4">
-                {socialLinks.map((social) => {
+                {SOCIAL_LINKS.map((social) => {
                   const Icon = social.icon;
                   return (
                     <a
