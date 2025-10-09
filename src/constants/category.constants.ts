@@ -17,11 +17,12 @@ import ltlImage from "@/assets/LTL-FTL-Shipment.webp";
 import returnsImage from "@/assets/Returns-handling-restocking.webp";
 import QAImage from "@/assets/Quality-control-checks.webp";
 import RMAImage from "@/assets/RMA-processes.webp";
+import { CategoryTitle } from "@/enums/category.enums";
 
 export const CATEGORIES: Category[] = [
   {
     id: 1,
-    title: "Warehousing",
+    title: CategoryTitle.WAREHOUSING,
     description: "Organized inventory, hassle-free.",
     image: eCommerceFulfillment,
     details: {
@@ -40,7 +41,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: 2,
-    title: "E-Commerce Fulfillment",
+    title: CategoryTitle.ECOMMERCE_FULFILLMENT,
     description: "From cart to doorstep, we handle it all.",
     image: reverseLogistics,
     details: {
@@ -62,7 +63,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: 3,
-    title: "Shipping & Freight Management",
+    title: CategoryTitle.SHIPPING_FREIGHT_MANAGEMENT,
     description: "Moving goods faster, safer, smarter.",
     image: shippingFrieghtManagement,
     details: {
@@ -92,7 +93,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: 4,
-    title: "Reverse Logistics",
+    title: CategoryTitle.REVERSE_LOGISTICS,
     description: "Returns and restocking made simple.",
     image: warehousing,
     details: {

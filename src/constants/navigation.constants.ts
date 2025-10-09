@@ -1,10 +1,11 @@
+import { NavItems } from "@/enums/navigation.enums";
 import { NavItem } from "@/types/navigation.types";
 
 export const NAV_ITEMS: NavItem[] = [
-  { name: "Our Services", href: "#categories" },
-  { name: "How We Work", href: "#how-we-work" },
-  { name: "Why Choose Us", href: "#why-choose-us" },
-  { name: "About Us", href: "#about-us" },
-  { name: "FAQs", href: "#faq" },
-  { name: "Contact Us", href: "#contact" },
+  { name: NavItems.OUR_SERVICES, href: "#categories" },
+  { name: NavItems.HOW_WE_WORK, href: "#how-we-work" },
+  { name: NavItems.WHY_CHOOSE_US, href: "#why-choose-us" },
+  { name: NavItems.ABOUT_US, href: "#about-us" },
+  { name: NavItems.FAQS, href: "#faq" },
+  { name: NavItems.CONTACT_US, href: "#contact" },
 ];

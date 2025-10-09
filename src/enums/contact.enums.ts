@@ -8,6 +8,7 @@ export enum ContactText {
   OFFICE_LABEL = "Visit Our Office",
   OFFICE_VALUE = "123 Business District, City",
   BENEFITS_TITLE = "Partnership Benefits",
+  PHONE_VALUE = "+1 (555) 123-4567",
   FORM_NAME_LABEL = "Full Name *",
   FORM_NAME_PLACEHOLDER = "Enter your full name",
   FORM_JOB_LABEL = "Job Title *",

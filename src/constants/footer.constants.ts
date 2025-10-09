@@ -1,3 +1,5 @@
+import { CategoryTitle } from "@/enums/category.enums";
+import { NavItems } from "@/enums/navigation.enums";
 import { NavItem, SocialLink } from "@/types/navigation.types";
 import {
   Facebook,
@@ -7,17 +9,17 @@ import {
 } from "lucide-react";
 
 export const FOOTER_NAV_ITEMS_COMPANY: NavItem[] = [
-  { name: "How We Work", href: "#how-we-work" },
-  { name: "Why Choose Us", href: "#why-choose-us" },
-  { name: "About Us", href: "#about-us" },
-  { name: "FAQs", href: "#faq" },
+  { name: NavItems.HOW_WE_WORK, href: "#how-we-work" },
+  { name: NavItems.WHY_CHOOSE_US, href: "#why-choose-us" },
+  { name: NavItems.ABOUT_US, href: "#about-us" },
+  { name: NavItems.FAQS, href: "#faq" },
 ];
 
 export const FOOTER_NAV_ITEMS_SERVICES: NavItem[] = [
-  { name: "Warehousing", href: "#categories" },
-  { name: "E-Commerce Fulfillment", href: "#categories" },
-  { name: "Shipping & Freight Management", href: "#categories" },
-  { name: "Reverse Logistics", href: "#categories" },
+  { name: CategoryTitle.WAREHOUSING, href: "#categories" },
+  { name: CategoryTitle.ECOMMERCE_FULFILLMENT, href: "#categories" },
+  { name: CategoryTitle.SHIPPING_FREIGHT_MANAGEMENT, href: "#categories" },
+  { name: CategoryTitle.REVERSE_LOGISTICS, href: "#categories" },
 ];
 
 export const FOOTER_NAV_ITEMS_RESOURCES: NavItem[] = [

@@ -1,4 +1,7 @@
 import { FOOTER_NAV_ITEMS_COMPANY, FOOTER_NAV_ITEMS_SERVICES, SOCIAL_LINKS } from "@/constants/footer.constants";
+import { ContactText } from "@/enums/contact.enums";
+import { FooterText } from "@/enums/footer.enums";
+import { NavItems } from "@/enums/navigation.enums";
 import {
   Mail,
   Phone,
@@ -48,19 +51,19 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-accent" />
                 <span className="text-primary-foreground/90">
-                  partnerships@logistics.com
+                  {ContactText.EMAIL_LABEL}
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-accent" />
                 <span className="text-primary-foreground/90">
-                  +1 (555) 123-4567
+                  {ContactText.PHONE_VALUE}
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={18} className="text-accent" />
                 <span className="text-primary-foreground/90">
-                  123 Business District, City
+                  {ContactText.OFFICE_VALUE}
                 </span>
               </div>
             </div>
@@ -69,7 +72,7 @@ const Footer = () => {
           {/* Links Sections */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-8">
             <div>
-              <h4 className="font-semibold mb-4 text-lg">Company</h4>
+              <h4 className="font-semibold mb-4 text-lg">{FooterText.SECTION_COMPANY_HEADER}</h4>
               <ul className="space-y-3">
                 {FOOTER_NAV_ITEMS_COMPANY.map((link) => (
                   <li key={link.name}>
@@ -85,7 +88,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 text-lg">Services</h4>
+              <h4 className="font-semibold mb-4 text-lg">{FooterText.SECTION_SERVICE_HEADER}</h4>
               <ul className="space-y-3">
                 {FOOTER_NAV_ITEMS_SERVICES.map((link) => (
                   <li key={link.name}>
@@ -120,7 +123,7 @@ const Footer = () => {
           {/* Newsletter & Social */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h4 className="font-semibold mb-4 text-lg">Our Mission</h4>
+              <h4 className="font-semibold mb-4 text-lg">{FooterText.SECTION_MISSION_HEADER}</h4>
               <p className="text-primary-foreground/80 text-sm mb-4">
                 We connect premium brands with discerning customers, delivering
                 innovation, quality, and trust in every partnership.
@@ -143,7 +146,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 text-lg">Follow Us</h4>
+              <h4 className="font-semibold mb-4 text-lg">{FooterText.SECTION_FOLLOW_HEADER}</h4>
               <div className="flex space-x-4">
                 {SOCIAL_LINKS.map((social) => {
                   const Icon = social.icon;
@@ -174,19 +177,19 @@ const Footer = () => {
                 to="/privacy-policy"
                 className="text-primary-foreground/80 hover:text-accent transition-colors"
               >
-                Privacy Policy
+                {NavItems.PRIVACY_POLICY}
               </Link>
               <Link
                 to="/terms-of-service"
                 className="text-primary-foreground/80 hover:text-accent transition-colors"
               >
-                Terms of Service
+                {NavItems.TERMS_OF_SERVICE}
               </Link>
               <Link
                 to="/cookie-policy"
                 className="text-primary-foreground/80 hover:text-accent transition-colors"
               >
-                Cookie Policy
+                {NavItems.COOKIE_POLICY}
               </Link>
             </div>
           </div>
