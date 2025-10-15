@@ -4,6 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { PARTNERSHIP_BENEFITS, INITIAL_FORM_DATA } from '@/constants/contact.constants';
 import { ContactText } from '@/enums/contact.enums';
 import { ContactFormData } from '@/types/contact.types';
+import { submitContactForm } from '@/services/contact.service';
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -22,16 +23,24 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      await submitContactForm(formData);
+      
+      toast({
+        title: ContactText.SUCCESS_TOAST_TITLE,
+        description: ContactText.SUCCESS_TOAST_DESCRIPTION,
+      });
 
-    toast({
-      title: ContactText.SUCCESS_TOAST_TITLE,
-      description: ContactText.SUCCESS_TOAST_DESCRIPTION,
-    });
-
-    setFormData(INITIAL_FORM_DATA);
-    setIsSubmitting(false);
+      setFormData(INITIAL_FORM_DATA);
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to send message. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -186,7 +195,6 @@ const ContactForm = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    required
                     rows={6}
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
                     placeholder={ContactText.FORM_MESSAGE_PLACEHOLDER}
